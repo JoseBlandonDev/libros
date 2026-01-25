@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
+  Copy,
   FileText,
   MessageCircle,
   ShieldCheck,
@@ -19,17 +20,17 @@ const collections = [
   {
     title: "Negocios",
     books: ["El Método Lean Startup", "Padre Rico Padre Pobre", "Los 7 hábitos"],
-    price: "2.500 COP"
+    price: "3.000 COP"
   },
   {
     title: "Estoicismo",
     books: ["Meditaciones", "Sobre la Brevedad de la Vida", "Cartas a Lucilio"],
-    price: "2.500 COP"
+    price: "3.000 COP"
   },
   {
     title: "Desarrollo Personal",
     books: ["El Poder del Ahora", "Atomic Habits", "Piense y Hágase Rico"],
-    price: "2.500 COP"
+    price: "3.000 COP"
   }
 ];
 
@@ -60,6 +61,19 @@ const fadeUp = {
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedPack, setSelectedPack] = useState("Combo Súper Éxito");
+  const [copied, setCopied] = useState(false);
+
+  const openModal = (packName) => {
+    setSelectedPack(packName);
+    setIsOpen(true);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText("3147162957");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="min-h-screen bg-night">
@@ -90,7 +104,7 @@ export default function Home() {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <button
-                onClick={() => setIsOpen(true)}
+                onClick={() => openModal("Combo Súper Éxito")}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
               >
                 Comprar ahora
@@ -160,7 +174,7 @@ export default function Home() {
                     {collection.price}
                   </p>
                   <button
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => openModal(`Pack ${collection.title}`)}
                     className="w-full rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/20 md:group-hover:bg-electric"
                   >
                     Comprar colección
@@ -173,32 +187,36 @@ export default function Home() {
 
         <motion.section
           {...fadeUp}
-          className="relative overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/5 via-white/5 to-gold/10 p-8 shadow-glow"
+          className="relative overflow-hidden rounded-3xl border border-gold/50 bg-gradient-to-br from-ink via-white/5 to-gold/20 p-8 shadow-glow"
         >
           <div className="absolute inset-0 opacity-40">
-            <div className="absolute right-6 top-6 h-24 w-24 rounded-full bg-electric/30 blur-2xl" />
+            <div className="absolute right-6 top-6 h-32 w-32 rounded-full bg-electric/40 blur-3xl" />
+            <div className="absolute left-[-10%] bottom-[-10%] h-40 w-40 rounded-full bg-gold/20 blur-3xl" />
           </div>
           <div className="relative space-y-5">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-gold">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-gold font-bold">
               <Sparkles className="h-4 w-4" />
-              Oferta estrella
+              La mejor opción
             </div>
             <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-              The Mega Bundle
+              Combo Súper Éxito (3 Packs)
             </h2>
-            <p className="max-w-2xl text-sm text-slate-200 sm:text-base">
-              Llévate las 3 colecciones completas: 60 libros, 3 categorías, acceso
-              inmediato. Ideal para avanzar rápido y ahorrar más.
+            <p className="max-w-2xl text-sm text-slate-200 sm:text-base leading-relaxed">
+              Llévate las 3 colecciones completas: 60 libros, 3 categorías fundamentales, acceso
+              inmediato. La opción preferida por quienes quieren avanzar al siguiente nivel.
             </p>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <p className="text-3xl font-semibold text-white">7.500 COP</p>
-              <span className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs text-slate-200">
-                Ahorra frente a compras individuales
+              <div className="flex flex-col">
+                <span className="text-xs text-slate-400 line-through">9.000 COP</span>
+                <p className="text-4xl font-bold text-white tracking-tight">7.500 COP</p>
+              </div>
+              <span className="rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs font-semibold text-gold">
+                Ahorras un 17% hoy
               </span>
             </div>
             <button
-              onClick={() => setIsOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition hover:scale-[1.02]"
+              onClick={() => openModal("Combo Súper Éxito")}
+              className="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-bold text-ink transition hover:scale-[1.05] shadow-lg shadow-gold/20"
             >
               Quiero el combo completo
               <ArrowRight className="h-4 w-4" />
@@ -282,7 +300,7 @@ export default function Home() {
             emprender y crecer a tu ritmo.
           </p>
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={() => openModal("Combo Súper Éxito")}
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-electric px-6 py-3 text-sm font-semibold text-white transition hover:scale-[1.02]"
           >
             Comprar ahora
@@ -308,65 +326,105 @@ export default function Home() {
         WhatsApp
       </a>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 px-5 pb-6 pt-24 sm:items-center sm:pb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="w-full max-w-md rounded-3xl border border-white/10 bg-ink p-6 text-left"
-          >
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-gold">
-                  Completa tu compra
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold text-white">
-                  Datos de pago
-                </h3>
-              </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="rounded-full p-2 text-slate-300 transition hover:bg-white/10"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="mt-6 space-y-4 text-sm text-slate-200">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-widest text-slate-400">
-                  Nequi
-                </p>
-                <p className="mt-2 text-lg font-semibold text-white">
-                  3147162957
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-widest text-slate-400">
-                  Daviplata
-                </p>
-                <p className="mt-2 text-lg font-semibold text-white">
-                  3147162957
-                </p>
-              </div>
-              <p className="text-xs text-slate-400">
-                Envía tu comprobante al WhatsApp 3161770893 y recibe tu acceso
-                inmediato.
-              </p>
-            </div>
-
-            <a
-              href="https://wa.me/573161770893?text=Hola%20ya%20realic%C3%A9%20el%20pago%20y%20env%C3%ADo%20mi%20comprobante."
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-electric px-6 py-3 text-sm font-semibold text-white transition hover:scale-[1.02]"
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/80 px-5 pb-6 pt-24 backdrop-blur-sm sm:items-center sm:pb-24">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md rounded-3xl border border-white/10 bg-ink p-7 text-left shadow-2xl"
             >
-              Enviar comprobante por WhatsApp
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </motion.div>
-        </div>
-      )}
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
+                    Paso final
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold text-white">
+                    Instrucciones de Pago
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-full bg-white/5 p-2 text-slate-300 transition hover:bg-white/10"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="mt-8 space-y-5">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 relative group transition hover:border-white/20">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
+                        Número Nequi / Daviplata
+                      </p>
+                      <p className="mt-1 text-2xl font-mono font-bold text-white tracking-wider">
+                        3147162957
+                      </p>
+                    </div>
+                    <button
+                      onClick={copyToClipboard}
+                      className="flex items-center gap-2 rounded-xl bg-white/10 px-4 py-3 text-xs font-bold text-white transition active:scale-95 hover:bg-electric"
+                    >
+                      {copied ? (
+                        <span className="text-white">¡Copiado!</span>
+                      ) : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          Copiar
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-3 px-1">
+                  <p className="text-sm font-medium text-slate-300">
+                    Estás adquiriendo: <span className="text-white font-bold">{selectedPack}</span>
+                  </p>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/20">
+                      <div className="h-2 w-2 rounded-full bg-electric" />
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Realiza la transferencia al número de arriba.
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/20">
+                      <div className="h-2 w-2 rounded-full bg-electric" />
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Haz una captura de pantalla del comprobante exitoso.
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/20">
+                      <div className="h-2 w-2 rounded-full bg-electric" />
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Presiona el botón de abajo para enviar el comprobante y recibir tu acceso.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href={`https://wa.me/573161770893?text=${encodeURIComponent(
+                  `Hola, acabo de realizar el pago para el ${selectedPack}. Aquí envío el comprobante.`
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full bg-electric px-6 py-4 text-sm font-bold text-white transition hover:scale-[1.02] shadow-lg shadow-electric/20"
+              >
+                Enviar Comprobante por WhatsApp
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
