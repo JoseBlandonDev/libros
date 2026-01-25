@@ -20,17 +20,20 @@ const collections = [
   {
     title: "Negocios",
     books: ["El Método Lean Startup", "Padre Rico Padre Pobre", "Los 7 hábitos"],
-    price: "3.000 COP"
+    price: "3.000 COP",
+    image: "/images/pack-negocios.jpg"
   },
   {
     title: "Estoicismo",
     books: ["Meditaciones", "Sobre la Brevedad de la Vida", "Cartas a Lucilio"],
-    price: "3.000 COP"
+    price: "3.000 COP",
+    image: "/images/pack-estoicismo.jpg"
   },
   {
     title: "Desarrollo Personal",
     books: ["El Poder del Ahora", "Atomic Habits", "Piense y Hágase Rico"],
-    price: "3.000 COP"
+    price: "3.000 COP",
+    image: "/images/pack-desarrollo.jpg"
   }
 ];
 
@@ -151,34 +154,44 @@ export default function Home() {
               <motion.div
                 key={collection.title}
                 whileHover={{ y: -6 }}
-                className="group flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 transition md:hover:border-electric/60"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition md:hover:border-electric/60"
               >
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-gold">
-                    <Star className="h-4 w-4" />
-                    <h3 className="text-lg font-semibold text-white">
-                      {collection.title}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2 text-sm text-slate-300">
-                    {collection.books.map((book) => (
-                      <li key={book} className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-electric" />
-                        {book}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={collection.image}
+                    alt={collection.title}
+                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-night/80 to-transparent opacity-60" />
                 </div>
-                <div className="mt-6 space-y-4">
-                  <p className="text-2xl font-semibold text-white">
-                    {collection.price}
-                  </p>
-                  <button
-                    onClick={() => openModal(`Pack ${collection.title}`)}
-                    className="w-full rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/20 md:group-hover:bg-electric"
-                  >
-                    Comprar colección
-                  </button>
+                <div className="flex flex-1 flex-col justify-between p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-gold">
+                      <Star className="h-4 w-4" />
+                      <h3 className="text-lg font-semibold text-white">
+                        {collection.title}
+                      </h3>
+                    </div>
+                    <ul className="space-y-2 text-sm text-slate-300">
+                      {collection.books.map((book) => (
+                        <li key={book} className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-electric" />
+                          {book}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-6 space-y-4">
+                    <p className="text-2xl font-semibold text-white">
+                      {collection.price}
+                    </p>
+                    <button
+                      onClick={() => openModal(`Pack ${collection.title}`)}
+                      className="w-full rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/20 md:group-hover:bg-electric"
+                    >
+                      Comprar colección
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -187,39 +200,43 @@ export default function Home() {
 
         <motion.section
           {...fadeUp}
-          className="relative overflow-hidden rounded-3xl border border-gold/50 bg-gradient-to-br from-ink via-white/5 to-gold/20 p-8 shadow-glow"
+          className="relative overflow-hidden rounded-3xl border border-gold/50 bg-ink shadow-glow"
         >
-          <div className="absolute inset-0 opacity-40">
-            <div className="absolute right-6 top-6 h-32 w-32 rounded-full bg-electric/40 blur-3xl" />
-            <div className="absolute left-[-10%] bottom-[-10%] h-40 w-40 rounded-full bg-gold/20 blur-3xl" />
+          <div className="absolute inset-0">
+            <img
+              src="/images/mega-bundle.jpg"
+              alt="Mega Bundle"
+              className="h-full w-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
           </div>
-          <div className="relative space-y-5">
+          <div className="relative p-8 md:p-12 space-y-6 max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-gold font-bold">
               <Sparkles className="h-4 w-4" />
               La mejor opción
             </div>
-            <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold text-white sm:text-5xl tracking-tight">
               Combo Súper Éxito (3 Packs)
             </h2>
-            <p className="max-w-2xl text-sm text-slate-200 sm:text-base leading-relaxed">
-              Llévate las 3 colecciones completas: 60 libros, 3 categorías fundamentales, acceso
-              inmediato. La opción preferida por quienes quieren avanzar al siguiente nivel.
+            <p className="text-sm text-slate-200 sm:text-lg leading-relaxed font-medium">
+              Llévate las 3 colecciones completas: 60 libros seleccionados, 3 categorías fundamentales, acceso
+              inmediato. La opción preferida por quienes buscan un cambio real.
             </p>
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center py-2">
               <div className="flex flex-col">
-                <span className="text-xs text-slate-400 line-through">9.000 COP</span>
-                <p className="text-4xl font-bold text-white tracking-tight">7.500 COP</p>
+                <span className="text-sm text-slate-400 line-through font-medium">9.000 COP</span>
+                <p className="text-5xl font-black text-white tracking-tighter shadow-sm">7.500 COP</p>
               </div>
-              <span className="rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs font-semibold text-gold">
+              <span className="rounded-full border border-gold/30 bg-gold/20 px-4 py-2 text-sm font-bold text-gold backdrop-blur-sm">
                 Ahorras un 17% hoy
               </span>
             </div>
             <button
               onClick={() => openModal("Combo Súper Éxito")}
-              className="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-bold text-ink transition hover:scale-[1.05] shadow-lg shadow-gold/20"
+              className="inline-flex items-center gap-3 rounded-full bg-gold px-10 py-5 text-base font-black text-ink transition hover:scale-[1.05] shadow-2xl shadow-gold/30 active:scale-95"
             >
               Quiero el combo completo
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </motion.section>
