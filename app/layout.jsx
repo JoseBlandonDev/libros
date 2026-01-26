@@ -7,13 +7,13 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Bibliotecas Digitales | Packs de libros PDF para tu Éxito",
+  title: "Pack de 60 Libros PDF: Negocios, Estoicismo y Desarrollo Personal en Colombia",
   description:
-    "Más de 60 libros curados de Negocios, Estoicismo y Desarrollo Personal. Acceso inmediato de por vida por solo 7.500 COP.",
-  metadataBase: new URL("https://libros-landing.vercel.app"), // Reemplaza con tu dominio real
+    "Descarga la colección definitiva de Libros PDF en Colombia. 60 títulos de Negocios, Estoicismo y Desarrollo Personal. Pago seguro por Nequi y acceso inmediato.",
+  metadataBase: new URL("https://libros.blandondev.com"),
   openGraph: {
-    title: "Bibliotecas Digitales | Packs de libros PDF para tu Éxito",
-    description: "Más de 60 libros curados de Negocios, Estoicismo y Desarrollo Personal. Acceso inmediato de por vida.",
+    title: "📚 Tu Biblioteca del Éxito: 60 Libros PDF por solo 7.500 COP",
+    description: "Acceso inmediato de por vida a las mejores colecciones de Negocios, Estoicismo y Desarrollo Personal.",
     url: "/",
     siteName: "Bibliotecas Digitales",
     images: [
@@ -21,7 +21,7 @@ export const metadata = {
         url: "/images/mega-bundle.jpg",
         width: 1200,
         height: 630,
-        alt: "Bibliotecas Digitales - Packs de libros PDF",
+        alt: "Mega Bundle 60 Libros PDF - Negocios, Estoicismo y Desarrollo Personal",
       },
     ],
     locale: "es_CO",
@@ -29,8 +29,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bibliotecas Digitales | Packs de libros PDF para tu Éxito",
-    description: "Más de 60 libros curados de Negocios, Estoicismo y Desarrollo Personal.",
+    title: "Pack de 60 Libros PDF: Éxito y Crecimiento Personal",
+    description: "Colección curada de 60 libros. Pago por Nequi, acceso instantáneo.",
     images: ["/images/mega-bundle.jpg"],
   },
   icons: {

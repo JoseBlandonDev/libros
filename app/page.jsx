@@ -13,7 +13,8 @@ import {
   Sparkles,
   Star,
   X,
-  Zap
+  Zap,
+  Check
 } from "lucide-react";
 
 const collections = [
@@ -21,13 +22,15 @@ const collections = [
     title: "Negocios",
     books: ["El Método Lean Startup", "Padre Rico Padre Pobre", "Los 7 hábitos"],
     price: "3.000 COP",
-    image: "/images/pack-negocios.jpg"
+    image: "/images/pack-negocios.jpg",
+    badge: "Nuevo"
   },
   {
     title: "Estoicismo",
     books: ["Meditaciones", "Sobre la Brevedad de la Vida", "Cartas a Lucilio"],
     price: "3.000 COP",
-    image: "/images/pack-estoicismo.jpg"
+    image: "/images/pack-estoicismo.jpg",
+    badge: "Más popular"
   },
   {
     title: "Desarrollo Personal",
@@ -41,17 +44,20 @@ const testimonials = [
   {
     name: "Camila R.",
     quote:
-      "En menos de 5 minutos ya tenía mis libros. El orden y la calidad PDF es impecable."
+      "En menos de 5 minutos ya tenía mis libros. El orden y la calidad PDF es impecable.",
+    verified: true
   },
   {
     name: "Juan D.",
     quote:
-      "El combo es un regalo. Me ayudó a estructurar mi plan de lectura para todo el año."
+      "El combo es un regalo. Me ayudó a estructurar mi plan de lectura para todo el año.",
+    verified: true
   },
   {
     name: "Laura G.",
     quote:
-      "Súper claro el proceso de pago y entrega inmediata. Recomendado para aprender rápido."
+      "Súper claro el proceso de pago y entrega inmediata. Recomendado para aprender rápido.",
+    verified: true
   }
 ];
 
@@ -66,6 +72,15 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPack, setSelectedPack] = useState("Combo Súper Éxito");
   const [copied, setCopied] = useState(false);
+  const [showSticky, setShowSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowSticky(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const openModal = (packName) => {
     setSelectedPack(packName);
@@ -78,8 +93,51 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Combo Súper Éxito - 60 Libros PDF",
+    "description": "Pack completo de 60 libros PDF de Negocios, Estoicismo y Desarrollo Personal. Acceso de por vida.",
+    "image": "https://libros.blandondev.com/images/mega-bundle.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": "7500",
+      "priceCurrency": "COP",
+      "availability": "https://schema.org/InStock",
+      "url": "https://libros.blandondev.com"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-night">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      
+      {/* Sticky Mobile Header */}
+      <AnimatePresence>
+        {showSticky && (
+          <motion.div
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            exit={{ y: -100 }}
+            className="fixed top-0 left-0 right-0 z-50 bg-night/80 backdrop-blur-md border-b border-white/10 px-5 py-3 flex items-center justify-between md:hidden"
+          >
+            <div className="flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-gold" />
+              <span className="font-bold text-sm text-white">Libros Digitales</span>
+            </div>
+            <button
+              onClick={() => openModal("Combo Súper Éxito")}
+              className="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg"
+            >
+              Obtener acceso
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <header className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-night to-night opacity-90" />
         <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-electric/20 blur-3xl" />
@@ -110,7 +168,7 @@ export default function Home() {
                 onClick={() => openModal("Combo Súper Éxito")}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
               >
-                Comprar ahora
+                Obtener acceso inmediato
                 <BookOpen className="h-4 w-4" />
               </button>
             </div>
@@ -154,12 +212,17 @@ export default function Home() {
               <motion.div
                 key={collection.title}
                 whileHover={{ y: -6 }}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition md:hover:border-electric/60"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition md:hover:border-electric/60 relative"
               >
+                {collection.badge && (
+                  <div className="absolute top-4 right-4 z-10 bg-gold text-ink text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-tighter">
+                    {collection.badge}
+                  </div>
+                )}
                 <div className="relative h-72 overflow-hidden bg-ink">
                   <img
                     src={collection.image}
-                    alt={collection.title}
+                    alt={`Colección de Libros PDF: ${collection.title}`}
                     className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-night/40 to-transparent opacity-40" />
@@ -182,14 +245,17 @@ export default function Home() {
                     </ul>
                   </div>
                   <div className="mt-6 space-y-4">
-                    <p className="text-2xl font-semibold text-white">
-                      {collection.price}
-                    </p>
+                    <div className="space-y-1">
+                      <p className="text-2xl font-semibold text-white">
+                        {collection.price}
+                      </p>
+                      <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
+                    </div>
                     <button
                       onClick={() => openModal(`Pack ${collection.title}`)}
-                      className="w-full rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/20 md:group-hover:bg-electric"
+                      className="w-full rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-3 text-sm font-bold text-white shadow-lg transition hover:brightness-110 active:scale-95"
                     >
-                      Comprar colección
+                      Obtener acceso inmediato
                     </button>
                   </div>
                 </div>
@@ -207,11 +273,13 @@ export default function Home() {
             <div className="relative h-64 w-full md:h-auto md:w-1/2 overflow-hidden bg-ink">
               <img
                 src="/images/mega-bundle.jpg"
-                alt="Combo Súper Éxito"
+                alt="Mejor Valor: Pack Completo 60 Libros PDF Negocios Estoicismo Desarrollo Personal"
                 className="h-full w-full object-contain md:object-cover"
               />
-              {/* Overlay para mejorar legibilidad en el borde de la imagen en desktop */}
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-ink" />
+              <div className="absolute top-4 left-4 bg-gold text-ink text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-tighter">
+                Mejor valor
+              </div>
             </div>
 
             {/* Contenido del Combo */}
@@ -230,19 +298,24 @@ export default function Home() {
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center py-2">
                 <div className="flex flex-col">
                   <span className="text-sm text-slate-400 line-through font-medium">9.000 COP</span>
-                  <p className="text-5xl font-black text-white tracking-tighter shadow-sm">7.500 COP</p>
+                  <div className="space-y-1">
+                    <p className="text-5xl font-black text-white tracking-tighter shadow-sm">7.500 COP</p>
+                    <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
+                  </div>
                 </div>
                 <span className="rounded-full border border-gold/30 bg-gold/20 px-4 py-2 text-sm font-bold text-gold backdrop-blur-sm">
                   Ahorras un 17% hoy
                 </span>
               </div>
-              <button
+              <motion.button
+                animate={{ scale: [1, 1.03, 1] }}
+                transition={{ repeat: Infinity, duration: 2 }}
                 onClick={() => openModal("Combo Súper Éxito")}
-                className="inline-flex items-center gap-3 rounded-full bg-gold px-10 py-5 text-base font-black text-ink transition hover:scale-[1.05] shadow-2xl shadow-gold/30 active:scale-95 w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-10 py-5 text-base font-black text-white transition shadow-2xl shadow-orange-500/30 active:scale-95 w-full sm:w-auto justify-center"
               >
-                Quiero el combo completo
+                Obtener acceso inmediato
                 <ArrowRight className="h-5 w-5" />
-              </button>
+              </motion.button>
             </div>
           </div>
         </motion.section>
@@ -302,10 +375,17 @@ export default function Home() {
                 key={testimonial.name}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6"
               >
-                <p className="text-sm text-slate-200">“{testimonial.quote}”</p>
-                <p className="mt-4 text-sm font-semibold text-white">
-                  {testimonial.name}
-                </p>
+                <div className="flex items-center gap-2 mb-4">
+                  <p className="text-sm font-semibold text-white">
+                    {testimonial.name}
+                  </p>
+                  {testimonial.verified && (
+                    <div className="bg-blue-500/20 p-0.5 rounded-full">
+                      <Check className="h-3 w-3 text-blue-400" />
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-slate-200 italic">“{testimonial.quote}”</p>
               </div>
             ))}
           </div>
@@ -333,9 +413,9 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-white/10 bg-black/20 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-5 text-center text-xs text-slate-400 sm:flex-row sm:justify-between sm:text-left">
+          <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-5 text-center text-xs text-slate-400 sm:flex-row sm:justify-between sm:text-left">
           <span>© 2026 Bibliotecas Digitales. Todos los derechos reservados.</span>
-          <span>Soporte: WhatsApp 3161770893</span>
+          <span>Nequi: 3147162957 | WhatsApp 3161770893</span>
         </div>
       </footer>
 
@@ -375,32 +455,35 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="mt-8 space-y-5">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 relative group transition hover:border-white/20">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
-                        Número Nequi / Daviplata
-                      </p>
-                      <p className="mt-1 text-2xl font-mono font-bold text-white tracking-wider">
-                        3147162957
-                      </p>
-                    </div>
-                    <button
-                      onClick={copyToClipboard}
-                      className="flex items-center gap-2 rounded-xl bg-white/10 px-4 py-3 text-xs font-bold text-white transition active:scale-95 hover:bg-electric"
-                    >
-                      {copied ? (
-                        <span className="text-white">¡Copiado!</span>
-                      ) : (
-                        <>
-                          <Copy className="h-4 w-4" />
-                          Copiar
-                        </>
-                      )}
-                    </button>
+            <div className="mt-8 space-y-5">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5 relative group transition hover:border-white/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
+                      Número Nequi
+                    </p>
+                    <p className="mt-1 text-2xl font-mono font-bold text-white tracking-wider">
+                      3147162957
+                    </p>
                   </div>
+                  <button
+                    onClick={copyToClipboard}
+                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-4 text-xs font-bold text-white transition active:scale-95 shadow-lg shadow-orange-500/20"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4" />
+                        ¡Copiado!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4" />
+                        Copiar
+                      </>
+                    )}
+                  </button>
                 </div>
+              </div>
 
                 <div className="space-y-3 px-1">
                   <p className="text-sm font-medium text-slate-300">
