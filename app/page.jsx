@@ -156,13 +156,13 @@ export default function Home() {
                 whileHover={{ y: -6 }}
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition md:hover:border-electric/60"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-72 overflow-hidden bg-ink">
                   <img
                     src={collection.image}
                     alt={collection.title}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"
+                    className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-night/80 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-night/40 to-transparent opacity-40" />
                 </div>
                 <div className="flex flex-1 flex-col justify-between p-6">
                   <div className="space-y-4">
@@ -202,42 +202,48 @@ export default function Home() {
           {...fadeUp}
           className="relative overflow-hidden rounded-3xl border border-gold/50 bg-ink shadow-glow"
         >
-          <div className="absolute inset-0">
-            <img
-              src="/images/mega-bundle.jpg"
-              alt="Mega Bundle"
-              className="h-full w-full object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
-          </div>
-          <div className="relative p-8 md:p-12 space-y-6 max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-gold font-bold">
-              <Sparkles className="h-4 w-4" />
-              La mejor opción
+          <div className="flex flex-col md:flex-row">
+            {/* Imagen para el Combo */}
+            <div className="relative h-64 w-full md:h-auto md:w-1/2 overflow-hidden bg-ink">
+              <img
+                src="/images/mega-bundle.jpg"
+                alt="Combo Súper Éxito"
+                className="h-full w-full object-contain md:object-cover"
+              />
+              {/* Overlay para mejorar legibilidad en el borde de la imagen en desktop */}
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-ink" />
             </div>
-            <h2 className="text-3xl font-bold text-white sm:text-5xl tracking-tight">
-              Combo Súper Éxito (3 Packs)
-            </h2>
-            <p className="text-sm text-slate-200 sm:text-lg leading-relaxed font-medium">
-              Llévate las 3 colecciones completas: 60 libros seleccionados, 3 categorías fundamentales, acceso
-              inmediato. La opción preferida por quienes buscan un cambio real.
-            </p>
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center py-2">
-              <div className="flex flex-col">
-                <span className="text-sm text-slate-400 line-through font-medium">9.000 COP</span>
-                <p className="text-5xl font-black text-white tracking-tighter shadow-sm">7.500 COP</p>
+
+            {/* Contenido del Combo */}
+            <div className="relative flex-1 p-8 md:p-12 space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-gold font-bold">
+                <Sparkles className="h-4 w-4" />
+                La mejor opción
               </div>
-              <span className="rounded-full border border-gold/30 bg-gold/20 px-4 py-2 text-sm font-bold text-gold backdrop-blur-sm">
-                Ahorras un 17% hoy
-              </span>
+              <h2 className="text-3xl font-bold text-white sm:text-5xl tracking-tight">
+                Combo Súper Éxito (3 Packs)
+              </h2>
+              <p className="text-sm text-slate-200 sm:text-lg leading-relaxed font-medium">
+                Llévate las 3 colecciones completas: 60 libros seleccionados, 3 categorías fundamentales, acceso
+                inmediato. La opción preferida por quienes buscan un cambio real.
+              </p>
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center py-2">
+                <div className="flex flex-col">
+                  <span className="text-sm text-slate-400 line-through font-medium">9.000 COP</span>
+                  <p className="text-5xl font-black text-white tracking-tighter shadow-sm">7.500 COP</p>
+                </div>
+                <span className="rounded-full border border-gold/30 bg-gold/20 px-4 py-2 text-sm font-bold text-gold backdrop-blur-sm">
+                  Ahorras un 17% hoy
+                </span>
+              </div>
+              <button
+                onClick={() => openModal("Combo Súper Éxito")}
+                className="inline-flex items-center gap-3 rounded-full bg-gold px-10 py-5 text-base font-black text-ink transition hover:scale-[1.05] shadow-2xl shadow-gold/30 active:scale-95 w-full sm:w-auto justify-center"
+              >
+                Quiero el combo completo
+                <ArrowRight className="h-5 w-5" />
+              </button>
             </div>
-            <button
-              onClick={() => openModal("Combo Súper Éxito")}
-              className="inline-flex items-center gap-3 rounded-full bg-gold px-10 py-5 text-base font-black text-ink transition hover:scale-[1.05] shadow-2xl shadow-gold/30 active:scale-95"
-            >
-              Quiero el combo completo
-              <ArrowRight className="h-5 w-5" />
-            </button>
           </div>
         </motion.section>
 
