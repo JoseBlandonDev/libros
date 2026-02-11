@@ -227,13 +227,10 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="mx-auto flex max-w-6xl flex-col gap-10 px-5 pb-24 pt-4 sm:gap-20 sm:px-6 sm:pt-8">
+      <main className="mx-auto flex max-w-6xl flex-col gap-8 px-5 pb-24 pt-2 sm:gap-20 sm:px-6 sm:pt-8">
         <motion.section {...fadeUp} id="precios" className="space-y-4 sm:space-y-8">
           <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold">
-              Paquetes digitales
-            </p>
-            <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+            <h2 className="text-3xl font-semibold text-white sm:text-4xl mt-0">
               Elige tu colección ideal
             </h2>
             <p className="max-w-2xl text-sm text-slate-300 sm:text-base">
