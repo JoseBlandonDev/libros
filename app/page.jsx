@@ -266,14 +266,9 @@ export default function Home() {
                     <div className="space-y-1">
                       <p className="text-2xl font-semibold text-white">
                         {usdToCopRate != null ? (
-                          <>
-                            {collection.priceUsd} USD
-                            <span className="text-base font-normal text-slate-400 ml-1.5">
-                              · {formatCOP(collection.priceUsd * usdToCopRate)} COP
-                            </span>
-                          </>
+                          <>{formatCOP(collection.priceUsd * usdToCopRate)} COP / {collection.priceUsd} USD</>
                         ) : (
-                          <span className="text-slate-400">1 USD · … COP</span>
+                          <>… COP / 1 USD</>
                         )}
                       </p>
                       <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
@@ -327,20 +322,20 @@ export default function Home() {
                   {usdToCopRate != null ? (
                     <>
                       <span className="text-sm text-slate-400 line-through font-medium">
-                        {COMBO_WAS_USD} USD · {formatCOP(COMBO_WAS_USD * usdToCopRate)} COP
+                        {formatCOP(COMBO_WAS_USD * usdToCopRate)} COP / {COMBO_WAS_USD} USD
                       </span>
                       <div className="space-y-1">
                         <p className="text-5xl font-black text-white tracking-tighter shadow-sm">
-                          {COMBO_USD.toLocaleString("es-CO", { minimumFractionDigits: 2 })} USD · {formatCOP(COMBO_USD * usdToCopRate)} COP
+                          {formatCOP(COMBO_USD * usdToCopRate)} COP / {COMBO_USD.toLocaleString("es-CO", { minimumFractionDigits: 2 })} USD
                         </p>
                         <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
                       </div>
                     </>
                   ) : (
                     <>
-                      <span className="text-sm text-slate-400 line-through font-medium">3 USD · … COP</span>
+                      <span className="text-sm text-slate-400 line-through font-medium">… COP / 3 USD</span>
                       <div className="space-y-1">
-                        <p className="text-5xl font-black text-white tracking-tighter shadow-sm">2,50 USD · … COP</p>
+                        <p className="text-5xl font-black text-white tracking-tighter shadow-sm">… COP / 2,50 USD</p>
                         <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
                       </div>
                     </>
