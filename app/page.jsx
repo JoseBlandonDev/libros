@@ -511,7 +511,7 @@ export default function Home() {
                 className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-[#0070BA] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#005ea6] hover:border-white/20 active:scale-[0.98] shadow-lg shadow-[#0070BA]/20"
               >
                 <CreditCard className="h-5 w-5" />
-                Pagar con Tarjeta / PayPal
+                Pagar con PayPal o tarjeta débito/crédito
               </a>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 relative group transition hover:border-white/20">
