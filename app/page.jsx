@@ -165,8 +165,8 @@ export default function Home() {
         <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-electric/20 blur-3xl" />
         <div className="absolute left-0 top-20 h-72 w-72 rounded-full bg-gold/20 blur-3xl" />
 
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-5 pb-20 pt-16 sm:px-6">
-          <motion.div {...fadeUp} className="space-y-6">
+        <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-5 pb-10 pt-10 sm:gap-10 sm:px-6 sm:pb-20 sm:pt-16">
+          <motion.div {...fadeUp} className="space-y-4 sm:space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-wider text-slate-200">
               <Sparkles className="h-4 w-4 text-gold" />
               Biblioteca digital premium
@@ -209,7 +209,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp} className="grid gap-4 text-sm text-slate-200 sm:grid-cols-3">
+          <motion.div {...fadeUp} className="hidden sm:grid gap-4 text-sm text-slate-200 sm:grid-cols-3">
             {[
               "Pago único, acceso de por vida",
               "Recibe el enlace a Google Drive al instante",
@@ -227,8 +227,8 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="mx-auto flex max-w-6xl flex-col gap-20 px-5 pb-24 pt-8 sm:px-6">
-        <motion.section {...fadeUp} id="precios" className="space-y-8">
+      <main className="mx-auto flex max-w-6xl flex-col gap-10 px-5 pb-24 pt-4 sm:gap-20 sm:px-6 sm:pt-8">
+        <motion.section {...fadeUp} id="precios" className="space-y-4 sm:space-y-8">
           <div className="space-y-2">
             <p className="text-xs uppercase tracking-[0.3em] text-gold">
               Paquetes digitales
@@ -254,7 +254,7 @@ export default function Home() {
                     {collection.badge}
                   </div>
                 )}
-                <div className="relative h-72 overflow-hidden bg-ink">
+                <div className="relative h-48 sm:h-72 overflow-hidden bg-ink">
                   <img
                     src={collection.image}
                     alt={`Colección de Libros PDF: ${collection.title}`}
