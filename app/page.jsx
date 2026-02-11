@@ -14,7 +14,9 @@ import {
   Star,
   X,
   Zap,
-  Check
+  Check,
+  CreditCard,
+  List
 } from "lucide-react";
 
 const PACK_USD = 1;
@@ -81,6 +83,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
   const [usdToCopRate, setUsdToCopRate] = useState(null);
+  const [viewingList, setViewingList] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -261,6 +264,13 @@ export default function Home() {
                         </li>
                       ))}
                     </ul>
+                    <button
+                      onClick={() => setViewingList(collection.title)}
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-electric transition hover:text-electric/80 hover:underline underline-offset-4"
+                    >
+                      <List className="h-3 w-3" />
+                      Ver lista completa
+                    </button>
                   </div>
                   <div className="mt-6 space-y-4">
                     <div className="space-y-1">
@@ -494,6 +504,16 @@ export default function Home() {
               </div>
 
             <div className="mt-8 space-y-5">
+              <a
+                href="https://www.paypal.com/ncp/payment/4E2E82TCVMRSN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-[#0070BA] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#005ea6] hover:border-white/20 active:scale-[0.98] shadow-lg shadow-[#0070BA]/20"
+              >
+                <CreditCard className="h-5 w-5" />
+                Pagar con Tarjeta / PayPal
+              </a>
+
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 relative group transition hover:border-white/20">
                 <div className="flex items-center justify-between">
                   <div>
@@ -522,16 +542,6 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-
-              <a
-                href="https://www.paypal.com/ncp/payment/4E2E82TCVMRSN"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-[#00457C] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#003b6a] hover:border-white/20 active:scale-[0.98]"
-              >
-                Pagar con PayPal, o tarjetas débito o crédito a través de PayPal
-                <ArrowRight className="h-4 w-4" />
-              </a>
 
                 <div className="space-y-3 px-1">
                   <p className="text-sm font-medium text-slate-300">
@@ -566,7 +576,7 @@ export default function Home() {
 
               <a
                 href={`https://wa.me/573161770893?text=${encodeURIComponent(
-                  `Hola, acabo de realizar el pago para el ${selectedPack}. Aquí envío el comprobante.`
+                  `Hola, he realizado el pago del pack: ${selectedPack}. Adjunto mi comprobante para recibir acceso.`
                 )}`}
                 target="_blank"
                 rel="noreferrer"
@@ -575,6 +585,77 @@ export default function Home() {
                 Enviar Comprobante por WhatsApp
                 <ArrowRight className="h-4 w-4" />
               </a>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {viewingList && (
+          <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/80 px-5 pb-6 pt-24 backdrop-blur-sm sm:items-center sm:pb-24">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-lg rounded-3xl border border-white/10 bg-ink p-7 text-left shadow-2xl h-[80vh] flex flex-col"
+            >
+              <div className="flex items-start justify-between mb-4 shrink-0">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
+                    Contenido del Pack
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold text-white">
+                    {viewingList}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setViewingList(null)}
+                  className="rounded-full bg-white/5 p-2 text-slate-300 transition hover:bg-white/10"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto pr-2 space-y-4">
+                <p className="text-sm text-slate-300">
+                  Aquí encontrarás la lista detallada de los libros incluidos en este pack.
+                  <br />
+                  <span className="text-xs text-slate-500 italic">
+                    (Sección de prueba: Pronto disponible con portadas y reseñas detalladas)
+                  </span>
+                </p>
+
+                <div className="grid gap-3">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5"
+                    >
+                      <div className="h-16 w-12 bg-slate-800 rounded shadow-sm shrink-0 flex items-center justify-center">
+                         <BookOpen className="h-4 w-4 text-slate-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="h-4 w-3/4 bg-slate-700/50 rounded mb-2" />
+                        <div className="h-3 w-1/2 bg-slate-700/30 rounded" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-white/10 shrink-0">
+                <button
+                  onClick={() => {
+                    const packToBuy = viewingList; // Capture current viewing list
+                    setViewingList(null); // Close list modal
+                    openModal(packToBuy); // Open buy modal
+                  }}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-electric px-4 py-3 text-sm font-bold text-white shadow-lg transition hover:brightness-110 active:scale-95"
+                >
+                  Obtener este pack ahora
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
             </motion.div>
           </div>
         )}
