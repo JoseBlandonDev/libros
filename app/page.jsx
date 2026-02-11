@@ -468,16 +468,16 @@ export default function Home() {
                   </div>
                   <button
                     onClick={copyToClipboard}
-                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-4 text-xs font-bold text-white transition active:scale-95 shadow-lg shadow-orange-500/20"
+                    className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 px-3 py-2.5 text-[10px] font-bold text-white transition active:scale-95 shadow-lg shadow-orange-500/20 sm:gap-2 sm:px-5 sm:py-4 sm:text-xs"
                   >
                     {copied ? (
                       <>
-                        <Check className="h-4 w-4" />
+                        <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         ¡Copiado!
                       </>
                     ) : (
                       <>
-                        <Copy className="h-4 w-4" />
+                        <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         Copiar
                       </>
                     )}
