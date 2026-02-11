@@ -7,7 +7,14 @@ export async function GET() {
     const data = await res.json();
     const cop = data?.rates?.COP;
     if (typeof cop !== "number") throw new Error("COP no encontrado");
-    return NextResponse.json({ usdToCop: cop });
+    return NextResponse.json(
+      { usdToCop: cop },
+      {
+        headers: {
+          "Cache-Control": "public, max-age=0, s-maxage=3600",
+        },
+      }
+    );
   } catch (e) {
     return NextResponse.json(
       { usdToCop: 4000 },
