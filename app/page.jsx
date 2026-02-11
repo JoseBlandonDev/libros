@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Script from "next/script";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -73,6 +74,8 @@ export default function Home() {
   const [selectedPack, setSelectedPack] = useState("Combo Súper Éxito");
   const [copied, setCopied] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
+  const [paypalReady, setPaypalReady] = useState(false);
+  const paypalRendered = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,6 +84,20 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      paypalRendered.current = false;
+      return;
+    }
+    if (!paypalReady || typeof window === "undefined" || !window.paypal) return;
+    const container = document.getElementById("paypal-container-4E2E82TCVMRSN");
+    if (!container || paypalRendered.current) return;
+    window.paypal.HostedButtons({
+      hostedButtonId: "4E2E82TCVMRSN"
+    }).render("#paypal-container-4E2E82TCVMRSN");
+    paypalRendered.current = true;
+  }, [isOpen, paypalReady]);
 
   const openModal = (packName) => {
     setSelectedPack(packName);
@@ -110,6 +127,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-night">
+      <Script
+        src="https://www.paypal.com/sdk/js?client-id=BAAi9z6ILMzQ2XConfbJ9yf9FqgX7QNbqeuOEwhdizf9MMBcx4LCdGWSrUf5q8lerH0wDB8I1x9Y5eKsE0&components=hosted-buttons&disable-funding=venmo&currency=USD"
+        strategy="afterInteractive"
+        onLoad={() => setPaypalReady(true)}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -483,6 +505,13 @@ export default function Home() {
                     )}
                   </button>
                 </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">
+                  O paga con PayPal
+                </p>
+                <div id="paypal-container-4E2E82TCVMRSN" className="min-h-[45px]" />
               </div>
 
                 <div className="space-y-3 px-1">
