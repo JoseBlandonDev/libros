@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import Script from "next/script";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -74,8 +73,6 @@ export default function Home() {
   const [selectedPack, setSelectedPack] = useState("Combo Súper Éxito");
   const [copied, setCopied] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
-  const [paypalReady, setPaypalReady] = useState(false);
-  const paypalRendered = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,20 +81,6 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (!isOpen) {
-      paypalRendered.current = false;
-      return;
-    }
-    if (!paypalReady || typeof window === "undefined" || !window.paypal) return;
-    const container = document.getElementById("paypal-container-4E2E82TCVMRSN");
-    if (!container || paypalRendered.current) return;
-    window.paypal.HostedButtons({
-      hostedButtonId: "4E2E82TCVMRSN"
-    }).render("#paypal-container-4E2E82TCVMRSN");
-    paypalRendered.current = true;
-  }, [isOpen, paypalReady]);
 
   const openModal = (packName) => {
     setSelectedPack(packName);
@@ -127,11 +110,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-night">
-      <Script
-        src="https://www.paypal.com/sdk/js?client-id=BAAi9z6ILMzQ2XConfbJ9yf9FqgX7QNbqeuOEwhdizf9MMBcx4LCdGWSrUf5q8lerH0wDB8I1x9Y5eKsE0&components=hosted-buttons&disable-funding=venmo&currency=USD"
-        strategy="afterInteractive"
-        onLoad={() => setPaypalReady(true)}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -507,12 +485,15 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">
-                  O paga con PayPal
-                </p>
-                <div id="paypal-container-4E2E82TCVMRSN" className="min-h-[45px]" />
-              </div>
+              <a
+                href="https://www.paypal.com/ncp/payment/4E2E82TCVMRSN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-[#00457C] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#003b6a] hover:border-white/20 active:scale-[0.98]"
+              >
+                Pagar con PayPal, o tarjetas débito o crédito a través de PayPal
+                <ArrowRight className="h-4 w-4" />
+              </a>
 
                 <div className="space-y-3 px-1">
                   <p className="text-sm font-medium text-slate-300">
