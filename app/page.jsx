@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -17,25 +17,32 @@ import {
   Check
 } from "lucide-react";
 
+const PACK_USD = 1;
+const COMBO_USD = 2.5;
+const COMBO_WAS_USD = 3; // 3 packs sin descuento
+
+const roundToNearest100 = (n) => Math.round(n / 100) * 100;
+const formatCOP = (n) => roundToNearest100(n).toLocaleString("es-CO");
+
 const collections = [
   {
     title: "Negocios",
     books: ["El Método Lean Startup", "Padre Rico Padre Pobre", "Los 7 hábitos"],
-    price: "3.000 COP",
+    priceUsd: PACK_USD,
     image: "/images/pack-negocios.jpg",
     badge: "Nuevo"
   },
   {
     title: "Estoicismo",
     books: ["Meditaciones", "Sobre la Brevedad de la Vida", "Cartas a Lucilio"],
-    price: "3.000 COP",
+    priceUsd: PACK_USD,
     image: "/images/pack-estoicismo.jpg",
     badge: "Más popular"
   },
   {
     title: "Desarrollo Personal",
     books: ["El Poder del Ahora", "Atomic Habits", "Piense y Hágase Rico"],
-    price: "3.000 COP",
+    priceUsd: PACK_USD,
     image: "/images/pack-desarrollo.jpg"
   }
 ];
@@ -73,6 +80,7 @@ export default function Home() {
   const [selectedPack, setSelectedPack] = useState("Combo Súper Éxito");
   const [copied, setCopied] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
+  const [usdToCopRate, setUsdToCopRate] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +88,13 @@ export default function Home() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/exchange-rate")
+      .then((res) => res.json())
+      .then((data) => setUsdToCopRate(data.usdToCop))
+      .catch(() => setUsdToCopRate(4000));
   }, []);
 
   const openModal = (packName) => {
@@ -93,7 +108,10 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const jsonLd = {
+  const comboCopPrice = usdToCopRate != null
+    ? roundToNearest100(COMBO_USD * usdToCopRate)
+    : null;
+  const jsonLd = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Combo Súper Éxito - 60 Libros PDF",
@@ -101,12 +119,12 @@ export default function Home() {
     "image": "https://libros.blandondev.com/images/mega-bundle.jpg",
     "offers": {
       "@type": "Offer",
-      "price": "7500",
+      "price": comboCopPrice != null ? String(comboCopPrice) : "10000",
       "priceCurrency": "COP",
       "availability": "https://schema.org/InStock",
       "url": "https://libros.blandondev.com"
     }
-  };
+  }), [comboCopPrice]);
 
   return (
     <div className="min-h-screen bg-night">
@@ -247,7 +265,16 @@ export default function Home() {
                   <div className="mt-6 space-y-4">
                     <div className="space-y-1">
                       <p className="text-2xl font-semibold text-white">
-                        {collection.price}
+                        {usdToCopRate != null ? (
+                          <>
+                            {collection.priceUsd} USD
+                            <span className="text-base font-normal text-slate-400 ml-1.5">
+                              · {formatCOP(collection.priceUsd * usdToCopRate)} COP
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-slate-400">1 USD · … COP</span>
+                        )}
                       </p>
                       <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
                     </div>
@@ -297,11 +324,27 @@ export default function Home() {
               </p>
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center py-2">
                 <div className="flex flex-col">
-                  <span className="text-sm text-slate-400 line-through font-medium">9.000 COP</span>
-                  <div className="space-y-1">
-                    <p className="text-5xl font-black text-white tracking-tighter shadow-sm">7.500 COP</p>
-                    <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
-                  </div>
+                  {usdToCopRate != null ? (
+                    <>
+                      <span className="text-sm text-slate-400 line-through font-medium">
+                        {COMBO_WAS_USD} USD · {formatCOP(COMBO_WAS_USD * usdToCopRate)} COP
+                      </span>
+                      <div className="space-y-1">
+                        <p className="text-5xl font-black text-white tracking-tighter shadow-sm">
+                          {COMBO_USD.toLocaleString("es-CO", { minimumFractionDigits: 2 })} USD · {formatCOP(COMBO_USD * usdToCopRate)} COP
+                        </p>
+                        <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-sm text-slate-400 line-through font-medium">3 USD · … COP</span>
+                      <div className="space-y-1">
+                        <p className="text-5xl font-black text-white tracking-tighter shadow-sm">2,50 USD · … COP</p>
+                        <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <span className="rounded-full border border-gold/30 bg-gold/20 px-4 py-2 text-sm font-bold text-gold backdrop-blur-sm">
                   Ahorras un 17% hoy
