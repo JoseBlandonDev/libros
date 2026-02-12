@@ -330,25 +330,13 @@ export default function Home() {
                         {collection.title}
                       </h3>
                     </div>
-                    <ul className="space-y-2 text-sm text-slate-300">
-                      {collection.books.slice(0, 3).map((book) => (
-                        <li key={book} className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-electric shrink-0" />
-                          <span className="line-clamp-1">{book}</span>
-                        </li>
-                      ))}
-                      {collection.books.length > 3 && (
-                        <li className="flex items-center gap-2 text-slate-500 italic text-xs pl-6">
-                          ... y {collection.books.length - 3} libros más
-                        </li>
-                      )}
-                    </ul>
+                    
                     <button
                       onClick={() => setViewingList(collection.title)}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-electric transition hover:text-electric/80 hover:underline underline-offset-4"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 py-3 text-xs font-bold text-electric uppercase tracking-wider transition hover:bg-white/10 hover:border-electric/30 hover:shadow-lg hover:shadow-electric/10"
                     >
                       <List className="h-3 w-3" />
-                      Ver lista completa
+                      Ver lista completa de libros
                     </button>
                   </div>
                   <div className="mt-6 space-y-4">
