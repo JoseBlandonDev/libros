@@ -153,9 +153,7 @@ export default function Home() {
   const [expandedBook, setExpandedBook] = useState(null);
 
   const getBookCover = (bookTitle) => {
-    const titleOnly = bookTitle.split(" - ")[0];
-    // Open Library es más amigable para hotlinking directo por título
-    return `https://covers.openlibrary.org/b/title/${encodeURIComponent(titleOnly.toLowerCase())}-M.jpg`;
+    return null;
   };
 
   useEffect(() => {
@@ -741,15 +739,6 @@ export default function Home() {
                             className="flex items-center gap-4 p-3 w-full text-left"
                           >
                             <div className="h-16 w-12 bg-gradient-to-br from-slate-800 to-slate-900 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10 flex items-center justify-center">
-                               <img 
-                                 src={getBookCover(book)} 
-                                 alt={title}
-                                 className="h-full w-full object-cover relative z-10"
-                                 loading="lazy"
-                                 onError={(e) => {
-                                   e.target.style.opacity = '0';
-                                 }}
-                               />
                                <div className="absolute inset-0 flex flex-col items-center justify-center p-1 text-center bg-gradient-to-br from-amber-900/20 to-black">
                                  <BookOpen className="h-4 w-4 text-gold/40 mb-1" />
                                  <span className="text-[6px] text-slate-300 font-bold uppercase leading-tight line-clamp-3 px-0.5">
