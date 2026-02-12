@@ -152,19 +152,6 @@ export default function Home() {
   const [viewingList, setViewingList] = useState(null);
   const [expandedBook, setExpandedBook] = useState(null);
 
-  const getBookCover = (bookTitle) => {
-    const titleOnly = bookTitle.split(" - ")[0];
-    const fileName = titleOnly
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "-")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "");
-
-    return `/covers/${fileName}.webp`;
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setShowSticky(window.scrollY > 400);
@@ -747,20 +734,8 @@ export default function Home() {
                             onClick={() => setExpandedBook(isExpanded ? null : i)}
                             className="flex items-center gap-4 p-3 w-full text-left"
                           >
-                            <div className="h-16 w-12 bg-slate-800 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10 flex items-center justify-center">
-                               <img 
-                                 src={getBookCover(book)} 
-                                 alt={title}
-                                 className="h-full w-full object-cover relative z-10"
-                                 loading="lazy"
-                                 onError={(e) => {
-                                   e.target.style.display = 'none';
-                                   e.target.parentElement.querySelector('.fallback-icon').style.display = 'flex';
-                                 }}
-                               />
-                               <div className="fallback-icon absolute inset-0 hidden flex-col items-center justify-center bg-slate-900">
-                                 <BookOpen className="h-5 w-5 text-slate-700" />
-                               </div>
+                            <div className="h-10 w-10 bg-slate-800 rounded shadow-sm shrink-0 flex items-center justify-center border border-white/5">
+                               <BookOpen className="h-5 w-5 text-slate-400" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-white leading-tight truncate">
