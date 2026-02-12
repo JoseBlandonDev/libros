@@ -272,7 +272,7 @@ export default function Home() {
               </a>
               <button
                 onClick={() => openModal("Combo Súper Éxito")}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
+                className="hidden sm:inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
               >
                 Obtener acceso inmediato
                 <BookOpen className="h-4 w-4" />
