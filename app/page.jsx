@@ -153,12 +153,9 @@ export default function Home() {
   const [expandedBook, setExpandedBook] = useState(null);
 
   const getBookCover = (bookTitle) => {
-    // Limpiamos el título para la búsqueda (quitamos el autor si viene en el string)
     const titleOnly = bookTitle.split(" - ")[0];
-    // Usamos la API de Google Books para obtener miniaturas. 
-    // Nota: Esto es una aproximación, en producción se podría hacer un fetch real, 
-    // pero para visualización inmediata usamos este patrón de URL de Google Books.
-    return `https://books.google.com/books/content?id=unknown&printsec=frontcover&img=1&zoom=1&source=gbs_api&q=${encodeURIComponent(titleOnly)}`;
+    // Google Books Search Link Pattern (más confiable)
+    return `https://books.google.com/books/content?id=unknown&printsec=frontcover&img=1&zoom=1&source=gbs_api&as_pt=BOOKS&q=${encodeURIComponent(titleOnly)}`;
   };
 
   useEffect(() => {
@@ -777,8 +774,13 @@ export default function Home() {
                               >
                                 <div className="pt-3 space-y-2">
                                   <p className="text-xs text-slate-300 leading-relaxed italic">
-                                    Este título forma parte de la colección "{viewingList}". 
-                                    Incluye el texto completo en formato PDF optimizado para lectura en móviles y tablets.
+                                    {title === "Las 48 Leyes del Poder" && "Un análisis profundo de las tácticas de poder basadas en la historia y la filosofía."}
+                                    {title === "Hábitos Atómicos" && "Una guía práctica para crear buenos hábitos y romper los malos mediante pequeños cambios."}
+                                    {title === "El poder del ahora" && "Un viaje espiritual para aprender a vivir en el presente y liberarse del sufrimiento mental."}
+                                    {title === "Meditaciones" && "Las reflexiones personales del emperador Marco Aurelio sobre la vida, la virtud y el estoicismo."}
+                                    {title === "Padre rico, padre pobre" && "Lecciones fundamentales sobre educación financiera y cómo hacer que el dinero trabaje para ti."}
+                                    {title === "Vendes o vendes" && "Estrategias de ventas agresivas y efectivas para triunfar en cualquier negocio."}
+                                    {!["Las 48 Leyes del Poder", "Hábitos Atómicos", "El poder del ahora", "Meditaciones", "Padre rico, padre pobre", "Vendes o vendes"].includes(title) && `Este título es una pieza clave de la colección "${viewingList}", seleccionado por su alto valor educativo y práctico.`}
                                   </p>
                                   <div className="flex gap-2">
                                     <span className="text-[9px] bg-electric/20 text-electric px-2 py-0.5 rounded-full border border-electric/30">PDF Premium</span>
