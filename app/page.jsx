@@ -17,7 +17,9 @@ import {
   Check,
   CreditCard,
   List,
-  Smartphone
+  Smartphone,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 
 const PACK_USD = 1;
@@ -148,6 +150,16 @@ export default function Home() {
   const [showSticky, setShowSticky] = useState(false);
   const [usdToCopRate, setUsdToCopRate] = useState(null);
   const [viewingList, setViewingList] = useState(null);
+  const [expandedBook, setExpandedBook] = useState(null);
+
+  const getBookCover = (bookTitle) => {
+    // Limpiamos el título para la búsqueda (quitamos el autor si viene en el string)
+    const titleOnly = bookTitle.split(" - ")[0];
+    // Usamos la API de Google Books para obtener miniaturas. 
+    // Nota: Esto es una aproximación, en producción se podría hacer un fetch real, 
+    // pero para visualización inmediata usamos este patrón de URL de Google Books.
+    return `https://books.google.com/books/content?id=unknown&printsec=frontcover&img=1&zoom=1&source=gbs_api&q=${encodeURIComponent(titleOnly)}`;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -167,6 +179,11 @@ export default function Home() {
   const openModal = (packName) => {
     setSelectedPack(packName);
     setIsOpen(true);
+  };
+
+  const closeViewingList = () => {
+    setViewingList(null);
+    setExpandedBook(null);
   };
 
   const copyToClipboard = () => {
@@ -698,7 +715,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <button
-                  onClick={() => setViewingList(null)}
+                  onClick={closeViewingList}
                   className="rounded-full bg-white/5 p-2 text-slate-300 transition hover:bg-white/10"
                 >
                   <X className="h-5 w-5" />
@@ -713,26 +730,67 @@ export default function Home() {
                 <div className="grid gap-3">
                   {collections
                     .find((c) => c.title === viewingList)
-                    ?.books.map((book, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5"
-                    >
-                      <div className="h-10 w-10 bg-slate-800 rounded shadow-sm shrink-0 flex items-center justify-center">
-                         <BookOpen className="h-5 w-5 text-slate-400" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-white leading-tight">
-                          {book.split(" - ")[0]}
-                        </p>
-                        {book.includes(" - ") && (
-                          <p className="text-[10px] text-slate-400 mt-0.5">
-                            {book.split(" - ")[1]}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                    ?.books.map((book, i) => {
+                      const isExpanded = expandedBook === i;
+                      const [title, author] = book.split(" - ");
+                      
+                      return (
+                        <div
+                          key={i}
+                          className="overflow-hidden rounded-xl bg-white/5 border border-white/5 transition-all"
+                        >
+                          <button
+                            onClick={() => setExpandedBook(isExpanded ? null : i)}
+                            className="flex items-center gap-4 p-3 w-full text-left"
+                          >
+                            <div className="h-16 w-12 bg-slate-800 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10">
+                               <img 
+                                 src={getBookCover(book)} 
+                                 alt={title}
+                                 className="h-full w-full object-cover"
+                                 loading="lazy"
+                                 onError={(e) => {
+                                   e.target.src = "https://via.placeholder.com/150x225/1e293b/fbbf24?text=Libro";
+                                 }}
+                               />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-bold text-white leading-tight truncate">
+                                {title}
+                              </p>
+                              <p className="text-[10px] text-slate-400 mt-0.5 truncate">
+                                {author || "Autor Desconocido"}
+                              </p>
+                            </div>
+                            <div className="text-slate-500 px-2">
+                              {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                            </div>
+                          </button>
+                          
+                          <AnimatePresence>
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="px-4 pb-4 border-t border-white/5 bg-white/[0.02]"
+                              >
+                                <div className="pt-3 space-y-2">
+                                  <p className="text-xs text-slate-300 leading-relaxed italic">
+                                    Este título forma parte de la colección "{viewingList}". 
+                                    Incluye el texto completo en formato PDF optimizado para lectura en móviles y tablets.
+                                  </p>
+                                  <div className="flex gap-2">
+                                    <span className="text-[9px] bg-electric/20 text-electric px-2 py-0.5 rounded-full border border-electric/30">PDF Premium</span>
+                                    <span className="text-[9px] bg-gold/20 text-gold px-2 py-0.5 rounded-full border border-gold/30">Acceso Drive</span>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
 
@@ -740,7 +798,7 @@ export default function Home() {
                 <button
                   onClick={() => {
                     const packToBuy = viewingList; // Capture current viewing list
-                    setViewingList(null); // Close list modal
+                    closeViewingList(); // Close list modal
                     openModal(packToBuy); // Open buy modal
                   }}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-electric px-4 py-3 text-sm font-bold text-white shadow-lg transition hover:brightness-110 active:scale-95"
