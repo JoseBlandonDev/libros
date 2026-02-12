@@ -154,8 +154,8 @@ export default function Home() {
 
   const getBookCover = (bookTitle) => {
     const titleOnly = bookTitle.split(" - ")[0];
-    // Google Books Search Link Pattern (más confiable)
-    return `https://books.google.com/books/content?id=unknown&printsec=frontcover&img=1&zoom=1&source=gbs_api&as_pt=BOOKS&q=${encodeURIComponent(titleOnly)}`;
+    // Usamos un servicio de búsqueda de portadas más abierto y estético
+    return `https://covers.openlibrary.org/b/title/${encodeURIComponent(titleOnly.toLowerCase())}-M.jpg?default=false`;
   };
 
   useEffect(() => {
@@ -740,16 +740,22 @@ export default function Home() {
                             onClick={() => setExpandedBook(isExpanded ? null : i)}
                             className="flex items-center gap-4 p-3 w-full text-left"
                           >
-                            <div className="h-16 w-12 bg-slate-800 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10">
+                            <div className="h-16 w-12 bg-gradient-to-br from-slate-800 to-slate-900 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10 flex items-center justify-center">
                                <img 
                                  src={getBookCover(book)} 
                                  alt={title}
-                                 className="h-full w-full object-cover"
+                                 className="h-full w-full object-cover relative z-10"
                                  loading="lazy"
                                  onError={(e) => {
-                                   e.target.src = "https://via.placeholder.com/150x225/1e293b/fbbf24?text=Libro";
+                                   e.target.style.display = 'none';
                                  }}
                                />
+                               <div className="absolute inset-0 flex flex-col items-center justify-center p-1 text-center">
+                                 <BookOpen className="h-4 w-4 text-gold/40 mb-1" />
+                                 <span className="text-[6px] text-slate-500 font-bold uppercase leading-tight line-clamp-3">
+                                   {title}
+                                 </span>
+                               </div>
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-white leading-tight truncate">
