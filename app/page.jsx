@@ -31,26 +31,26 @@ const collections = [
   {
     title: "Negocios",
     books: [
-      "Vendes o vendes",
-      "El método Lean Startup",
-      "El líder que no tenía cargo",
-      "El ejecutivo al minuto y la organización del tiempo",
-      "La semana laboral de 4 horas",
-      "Influencia: La psicología de la persuasión",
-      "El manual del emprendedor",
-      "Administración En una página",
-      "El cuadrante del flujo de dinero",
-      "Rompe la barrera del no",
-      "La estrategia del océano azul",
-      "Empresas que sobresalen (Good to Great)",
-      "El mito del emprendedor",
-      "El millonario de la puerta de al lado",
-      "Padre rico, padre pobre",
-      "El dilema de los innovadores",
-      "De cero a uno",
-      "Organizaciones exponenciales",
-      "El arte de la guerra",
-      "Rework"
+      "Vendes o vendes - Grant Cardone",
+      "El método Lean Startup - Eric Ries",
+      "El líder que no tenía cargo - Robin Sharma",
+      "El ejecutivo al minuto y la organización del tiempo - Kenneth Blanchard, William Oncken, Jr., Hal Burrows",
+      "La semana laboral de 4 horas - Timothy Ferriss",
+      "Influencia: La psicología de la persuasión - Robert B. Cialdini",
+      "El manual del emprendedor - Steve Blank y Bob Dorf",
+      "Administración En una página - Riaz Khadem y Robert Lorber",
+      "El cuadrante del flujo de dinero - Robert T. Kiyosaki",
+      "Rompe la barrera del no - Chris Voss",
+      "La estrategia del océano azul - W. Chan Kim y Renée Mauborgne",
+      "Empresas que sobresalen (Good to Great) - Jim Collins",
+      "El mito del emprendedor - Michael E. Gerber",
+      "El millonario de la puerta de al lado - Thomas J. Stanley y William D. Danko",
+      "Padre rico, padre pobre - Robert T. Kiyosaki",
+      "El dilema de los innovadores - Clayton M. Christensen",
+      "De cero a uno - Peter Thiel",
+      "Organizaciones exponenciales - Salim Ismail, Michael S. Malone y Yuri Van Geest",
+      "El arte de la guerra - Sun Tzu",
+      "Rework - Jason Fried y David Heinemeier Hansson"
     ],
     priceUsd: PACK_USD,
     image: "/images/pack-negocios.jpg",
@@ -59,26 +59,26 @@ const collections = [
   {
     title: "Estoicismo",
     books: [
-      "La disciplina marcará tu destino",
-      "Escuela de Estoicismo Moderno",
-      "De la Tranquilidad del Ánimo",
-      "El pequeño libro de la filosofía estoica",
-      "Pequeño Manual Estóico",
-      "Meditaciones",
-      "Cartas a Lucilio",
-      "Los Estoicos y el Problema de la Libertad",
-      "Diario para Estoicos",
-      "Invicto",
-      "Ecos Estoicos",
-      "De la Ira",
-      "Cómo ser un estoico",
-      "El estoico en práctica",
-      "El arte de vivir como un estoico",
-      "Los Estoicos: Epicteto, Séneca, Marco Aurelio",
-      "El arte de la buena vida",
-      "El obstáculo es el camino",
-      "La sabiduría de los estoicos",
-      "De la Brevedad de la Vida"
+      "La disciplina marcará tu destino - Ryan Holiday",
+      "Escuela de Estoicismo Moderno - Isra García",
+      "De la Tranquilidad del Ánimo - Lucio Anneo Séneca",
+      "El pequeño libro de la filosofía estoica - Javier G. Recuenco y Guillermo de Haro",
+      "Pequeño Manual Estóico - Isra García",
+      "Meditaciones - Marco Aurelio",
+      "Cartas a Lucilio - Séneca",
+      "Los Estoicos y el Problema de la Libertad - Ricardo Salles",
+      "Diario para Estoicos - Ryan Holiday y Stephen Hanselman",
+      "Invicto - Marcos Vázquez",
+      "Ecos Estoicos - Pedro Vivar Núñez",
+      "De la Ira - Lucio Anneo Séneca",
+      "Cómo ser un estoico - Massimo Pigliucci",
+      "El estoico en práctica - Ward Farnsworth",
+      "El arte de vivir como un estoico - David Fideler",
+      "Los Estoicos: Epicteto, Séneca, Marco Aurelio - Selecciones de Nueva Acrópolis",
+      "El arte de la buena vida - William B. Irvine",
+      "El obstáculo es el camino - Ryan Holiday",
+      "La sabiduría de los estoicos - Frances y Henry Hazlitt",
+      "De la Brevedad de la Vida - Lucio Anneo Séneca"
     ],
     priceUsd: PACK_USD,
     image: "/images/pack-estoicismo.jpg",
@@ -87,26 +87,26 @@ const collections = [
   {
     title: "Desarrollo Personal",
     books: [
-      "Las 48 Leyes del Poder",
-      "Tus zonas erróneas",
-      "La magia del orden",
-      "El Club de las 5 de la mañana",
-      "¿Quién se ha llevado mi queso?",
-      "Los 7 hábitos de la gente altamente efectiva",
-      "Despierta tu héroe interior",
-      "Cree en ti",
-      "El sutil arte de que (casi todo) te importe una mierda",
-      "Ámate a ti mismo como si tu vida dependiera de ello",
-      "Piense y hágase rico",
-      "El hombre en busca de sentido",
-      "Si lo crees, lo creas",
-      "Cómo ganar amigos e influir sobre las personas",
-      "El monje que vendió su Ferrari",
-      "La Vaca",
-      "Más agudo, más rápido y mejor",
-      "El poder del ahora",
-      "Hábitos Atómicos",
-      "¡Hazlo con miedo!"
+      "Las 48 Leyes del Poder - Robert Greene",
+      "Tus zonas erróneas - Wayne Dyer",
+      "La magia del orden - Marie Kondo",
+      "El Club de las 5 de la mañana - Robin Sharma",
+      "¿Quién se ha llevado mi queso? - Spencer Johnson",
+      "Los 7 hábitos de la gente altamente efectiva - Stephen Covey",
+      "Despierta tu héroe interior - Victor Hugo Manzanilla",
+      "Cree en ti - Rut Nieves",
+      "El sutil arte de que (casi todo) te importe una mierda - Mark Manson",
+      "Ámate a ti mismo como si tu vida dependiera de ello - Kamal Ravikant",
+      "Piense y hágase rico - Napoleon Hill",
+      "El hombre en busca de sentido - Viktor Frankl",
+      "Si lo crees, lo creas - Brian Tracy",
+      "Cómo ganar amigos e influir sobre las personas - Dale Carnegie",
+      "El monje que vendió su Ferrari - Robin Sharma",
+      "La Vaca - Camilo Cruz",
+      "Más agudo, más rápido y mejor - Charles Duhigg",
+      "El poder del ahora - Eckhart Tolle",
+      "Hábitos Atómicos - James Clear",
+      "¡Hazlo con miedo! - Ruth Soukup"
     ],
     priceUsd: PACK_USD,
     image: "/images/pack-desarrollo.jpg"
@@ -723,8 +723,13 @@ export default function Home() {
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-white leading-tight">
-                          {book}
+                          {book.split(" - ")[0]}
                         </p>
+                        {book.includes(" - ") && (
+                          <p className="text-[10px] text-slate-400 mt-0.5">
+                            {book.split(" - ")[1]}
+                          </p>
+                        )}
                       </div>
                     </div>
                   ))}
