@@ -154,9 +154,8 @@ export default function Home() {
 
   const getBookCover = (bookTitle) => {
     const titleOnly = bookTitle.split(" - ")[0];
-    // Usamos el servicio de búsqueda de imágenes de Google Books pero a través de una URL de búsqueda más directa
-    // que suele funcionar mejor para hotlinking de miniaturas.
-    return `https://books.google.com/books/content?id=unknown&printsec=frontcover&img=1&zoom=1&source=gbs_api&as_pt=BOOKS&q=${encodeURIComponent(titleOnly)}`;
+    // Open Library es más amigable para hotlinking directo por título
+    return `https://covers.openlibrary.org/b/title/${encodeURIComponent(titleOnly.toLowerCase())}-M.jpg`;
   };
 
   useEffect(() => {
