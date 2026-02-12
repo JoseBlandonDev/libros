@@ -153,7 +153,16 @@ export default function Home() {
   const [expandedBook, setExpandedBook] = useState(null);
 
   const getBookCover = (bookTitle) => {
-    return null;
+    const titleOnly = bookTitle.split(" - ")[0];
+    const fileName = titleOnly
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+
+    return `/covers/${fileName}.webp`;
   };
 
   useEffect(() => {
@@ -738,12 +747,19 @@ export default function Home() {
                             onClick={() => setExpandedBook(isExpanded ? null : i)}
                             className="flex items-center gap-4 p-3 w-full text-left"
                           >
-                            <div className="h-16 w-12 bg-gradient-to-br from-slate-800 to-slate-900 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10 flex items-center justify-center">
-                               <div className="absolute inset-0 flex flex-col items-center justify-center p-1 text-center bg-gradient-to-br from-amber-900/20 to-black">
-                                 <BookOpen className="h-4 w-4 text-gold/40 mb-1" />
-                                 <span className="text-[6px] text-slate-300 font-bold uppercase leading-tight line-clamp-3 px-0.5">
-                                   {title}
-                                 </span>
+                            <div className="h-16 w-12 bg-slate-800 rounded shadow-md shrink-0 overflow-hidden relative border border-white/10 flex items-center justify-center">
+                               <img 
+                                 src={getBookCover(book)} 
+                                 alt={title}
+                                 className="h-full w-full object-cover relative z-10"
+                                 loading="lazy"
+                                 onError={(e) => {
+                                   e.target.style.display = 'none';
+                                   e.target.parentElement.querySelector('.fallback-icon').style.display = 'flex';
+                                 }}
+                               />
+                               <div className="fallback-icon absolute inset-0 hidden flex-col items-center justify-center bg-slate-900">
+                                 <BookOpen className="h-5 w-5 text-slate-700" />
                                </div>
                             </div>
                             <div className="flex-1 min-w-0">
