@@ -535,40 +535,19 @@ export default function Home() {
         </motion.section>
       </main>
 
-      <footer className="border-t border-white/10 bg-black/20 py-8 mb-20 md:mb-0">
+      <footer className="border-t border-white/10 bg-black/20 py-8">
           <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-5 text-center text-xs text-slate-400 sm:flex-row sm:justify-between sm:text-left">
           <span>© 2026 Bibliotecas Digitales. Todos los derechos reservados.</span>
           <span>Nequi: 3147162957 | WhatsApp 3161770893</span>
         </div>
       </footer>
 
-      {/* Mobile Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-night/90 backdrop-blur-lg border-t border-white/10 p-4 md:hidden safe-area-pb">
-        <div className="flex gap-3">
-          <a
-            href="https://wa.me/573161770893?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20los%20packs%20de%20libros."
-            target="_blank"
-            rel="noreferrer"
-            className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-white border border-white/10 active:scale-95 transition"
-          >
-            <MessageCircle className="h-6 w-6 text-green-500" />
-          </a>
-          <button
-            onClick={() => openModal("Combo Súper Éxito")}
-            className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-orange-500/20 active:scale-[0.98] transition flex items-center justify-center gap-2 animate-pulse-slow"
-          >
-            QUIERO ACCESO YA
-            <Zap className="h-4 w-4 fill-white" />
-          </button>
-        </div>
-      </div>
-
       {/* Desktop WhatsApp Button */}
       <a
         href="https://wa.me/573161770893?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20los%20packs%20de%20libros."
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-5 right-5 z-40 hidden md:inline-flex items-center gap-2 rounded-full bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-green-500/30 transition hover:scale-[1.02]"
+        className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-green-500/30 transition hover:scale-[1.02]"
       >
         <MessageCircle className="h-4 w-4" />
         WhatsApp
