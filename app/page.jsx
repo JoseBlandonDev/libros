@@ -44,7 +44,28 @@ const collections = [
   },
   {
     title: "Desarrollo Personal",
-    books: ["El Poder del Ahora", "Atomic Habits", "Piense y Hágase Rico"],
+    books: [
+      "Las 48 Leyes del Poder",
+      "Tus zonas erróneas",
+      "La magia del orden",
+      "El Club de las 5 de la mañana",
+      "¿Quién se ha llevado mi queso?",
+      "Los 7 hábitos de la gente altamente efectiva",
+      "Despierta tu héroe interior",
+      "Cree en ti",
+      "El sutil arte de que (casi todo) te importe una mierda",
+      "Ámate a ti mismo como si tu vida dependiera de ello",
+      "Piense y hágase rico",
+      "El hombre en busca de sentido",
+      "Si lo crees, lo creas",
+      "Cómo ganar amigos e influir sobre las personas",
+      "El monje que vendió su Ferrari",
+      "La Vaca",
+      "Más agudo, más rápido y mejor",
+      "El poder del ahora",
+      "Hábitos Atómicos",
+      "¡Hazlo con miedo!"
+    ],
     priceUsd: PACK_USD,
     image: "/images/pack-desarrollo.jpg"
   }
@@ -268,12 +289,17 @@ export default function Home() {
                       </h3>
                     </div>
                     <ul className="space-y-2 text-sm text-slate-300">
-                      {collection.books.map((book) => (
+                      {collection.books.slice(0, 3).map((book) => (
                         <li key={book} className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-electric" />
-                          {book}
+                          <CheckCircle2 className="h-4 w-4 text-electric shrink-0" />
+                          <span className="line-clamp-1">{book}</span>
                         </li>
                       ))}
+                      {collection.books.length > 3 && (
+                        <li className="flex items-center gap-2 text-slate-500 italic text-xs pl-6">
+                          ... y {collection.books.length - 3} libros más
+                        </li>
+                      )}
                     </ul>
                     <button
                       onClick={() => setViewingList(collection.title)}
@@ -652,24 +678,23 @@ export default function Home() {
               <div className="flex-1 overflow-y-auto pr-2 space-y-4">
                 <p className="text-sm text-slate-300">
                   Aquí encontrarás la lista detallada de los libros incluidos en este pack.
-                  <br />
-                  <span className="text-xs text-slate-500 italic">
-                    (Sección de prueba: Pronto disponible con portadas y reseñas detalladas)
-                  </span>
                 </p>
 
                 <div className="grid gap-3">
-                  {[...Array(8)].map((_, i) => (
+                  {collections
+                    .find((c) => c.title === viewingList)
+                    ?.books.map((book, i) => (
                     <div
                       key={i}
                       className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5"
                     >
-                      <div className="h-16 w-12 bg-slate-800 rounded shadow-sm shrink-0 flex items-center justify-center">
-                         <BookOpen className="h-4 w-4 text-slate-600" />
+                      <div className="h-10 w-10 bg-slate-800 rounded shadow-sm shrink-0 flex items-center justify-center">
+                         <BookOpen className="h-5 w-5 text-slate-400" />
                       </div>
                       <div className="flex-1">
-                        <div className="h-4 w-3/4 bg-slate-700/50 rounded mb-2" />
-                        <div className="h-3 w-1/2 bg-slate-700/30 rounded" />
+                        <p className="text-sm font-medium text-white leading-tight">
+                          {book}
+                        </p>
                       </div>
                     </div>
                   ))}
