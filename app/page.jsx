@@ -377,7 +377,7 @@ export default function Home() {
         >
           <div className="flex flex-col md:flex-row">
             {/* Imagen para el Combo */}
-            <div className="relative h-64 w-full md:h-auto md:w-1/2 overflow-hidden bg-ink">
+            <div className="relative h-48 sm:h-64 w-full md:h-auto md:w-1/2 overflow-hidden bg-ink">
               <img
                 src="/images/mega-bundle.jpg"
                 alt="Mejor Valor: Pack Completo 60 Libros PDF Negocios Estoicismo Desarrollo Personal"
@@ -390,43 +390,42 @@ export default function Home() {
             </div>
 
             {/* Contenido del Combo */}
-            <div className="relative flex-1 p-8 md:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-gold font-bold">
-                <Sparkles className="h-4 w-4" />
+            <div className="relative flex-1 p-6 sm:p-8 md:p-12 space-y-4 sm:space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-gold font-bold">
+                <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
                 La mejor opción
               </div>
-              <h2 className="text-3xl font-bold text-white sm:text-5xl tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white tracking-tight">
                 Combo Súper Éxito (3 Packs)
               </h2>
-              <p className="text-sm text-slate-200 sm:text-lg leading-relaxed font-medium">
-                Llévate las 3 colecciones completas: 60 libros seleccionados, 3 categorías fundamentales, acceso
-                inmediato. La opción preferida por quienes buscan un cambio real.
+              <p className="text-xs sm:text-sm md:text-lg text-slate-200 leading-relaxed font-medium">
+                Llévate las 3 colecciones completas: 60 libros seleccionados, acceso inmediato.
               </p>
-              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center py-2">
+              <div className="flex flex-col items-start gap-2 sm:gap-4 sm:flex-row sm:items-center py-1 sm:py-2">
                 <div className="flex flex-col">
                   {usdToCopRate != null ? (
                     <>
-                      <span className="text-sm text-slate-400 line-through font-medium">
+                      <span className="text-xs sm:text-sm text-slate-400 line-through font-medium">
                         {formatCOP(COMBO_WAS_USD * usdToCopRate)} COP / {COMBO_WAS_USD} USD
                       </span>
-                      <div className="space-y-1">
-                        <p className="text-5xl font-black text-white tracking-tighter shadow-sm">
+                      <div className="space-y-0.5 sm:space-y-1">
+                        <p className="text-3xl sm:text-5xl font-black text-white tracking-tighter shadow-sm">
                           {formatCOP(COMBO_USD * usdToCopRate)} COP / {COMBO_USD.toLocaleString("es-CO", { minimumFractionDigits: 2 })} USD
                         </p>
-                        <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
+                        <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
                       </div>
                     </>
                   ) : (
                     <>
-                      <span className="text-sm text-slate-400 line-through font-medium">… COP / 3 USD</span>
-                      <div className="space-y-1">
-                        <p className="text-5xl font-black text-white tracking-tighter shadow-sm">… COP / 2,50 USD</p>
-                        <p className="text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
+                      <span className="text-xs sm:text-sm text-slate-400 line-through font-medium">… COP / 3 USD</span>
+                      <div className="space-y-0.5 sm:space-y-1">
+                        <p className="text-3xl sm:text-5xl font-black text-white tracking-tighter shadow-sm">… COP / 2,50 USD</p>
+                        <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium">Precio único - Sin suscripciones</p>
                       </div>
                     </>
                   )}
                 </div>
-                <span className="rounded-full border border-gold/30 bg-gold/20 px-4 py-2 text-sm font-bold text-gold backdrop-blur-sm">
+                <span className="rounded-full border border-gold/30 bg-gold/20 px-3 py-1 sm:px-4 sm:py-2 text-[10px] sm:text-sm font-bold text-gold backdrop-blur-sm">
                   Ahorras un 17% hoy
                 </span>
               </div>
@@ -434,10 +433,10 @@ export default function Home() {
                 animate={{ scale: [1, 1.03, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
                 onClick={() => openModal("Combo Súper Éxito")}
-                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-10 py-5 text-base font-black text-white transition shadow-2xl shadow-orange-500/30 active:scale-95 w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-4 sm:px-10 sm:py-5 text-sm sm:text-base font-black text-white transition shadow-2xl shadow-orange-500/30 active:scale-95 w-full sm:w-auto justify-center"
               >
                 Obtener acceso inmediato
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.button>
             </div>
           </div>
