@@ -154,8 +154,16 @@ export default function Home() {
 
   const getBookCover = (bookTitle) => {
     const titleOnly = bookTitle.split(" - ")[0];
-    // Usamos un servicio de búsqueda de portadas más abierto y estético
-    return `https://covers.openlibrary.org/b/title/${encodeURIComponent(titleOnly.toLowerCase())}-M.jpg?default=false`;
+    // Convertimos el título a un formato de nombre de archivo: minúsculas, sin acentos y guiones en lugar de espacios
+    const fileName = titleOnly
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "") // Quita acentos
+      .replace(/[^a-z0-9]/g, "-")      // Cambia todo lo no alfanumérico por guion
+      .replace(/-+/g, "-")             // Quita guiones duplicados
+      .replace(/^-|-$/g, "");          // Quita guiones al inicio o final
+
+    return `/covers/${fileName}.jpg`;
   };
 
   useEffect(() => {
