@@ -154,16 +154,9 @@ export default function Home() {
 
   const getBookCover = (bookTitle) => {
     const titleOnly = bookTitle.split(" - ")[0];
-    // Convertimos el título a un formato de nombre de archivo: minúsculas, sin acentos y guiones en lugar de espacios
-    const fileName = titleOnly
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "") // Quita acentos
-      .replace(/[^a-z0-9]/g, "-")      // Cambia todo lo no alfanumérico por guion
-      .replace(/-+/g, "-")             // Quita guiones duplicados
-      .replace(/^-|-$/g, "");          // Quita guiones al inicio o final
-
-    return `/covers/${fileName}.jpg`;
+    // Usamos el servicio de búsqueda de imágenes de Google Books pero a través de una URL de búsqueda más directa
+    // que suele funcionar mejor para hotlinking de miniaturas.
+    return `https://books.google.com/books/content?id=unknown&printsec=frontcover&img=1&zoom=1&source=gbs_api&as_pt=BOOKS&q=${encodeURIComponent(titleOnly)}`;
   };
 
   useEffect(() => {
@@ -755,12 +748,12 @@ export default function Home() {
                                  className="h-full w-full object-cover relative z-10"
                                  loading="lazy"
                                  onError={(e) => {
-                                   e.target.style.display = 'none';
+                                   e.target.style.opacity = '0';
                                  }}
                                />
-                               <div className="absolute inset-0 flex flex-col items-center justify-center p-1 text-center">
+                               <div className="absolute inset-0 flex flex-col items-center justify-center p-1 text-center bg-gradient-to-br from-amber-900/20 to-black">
                                  <BookOpen className="h-4 w-4 text-gold/40 mb-1" />
-                                 <span className="text-[6px] text-slate-500 font-bold uppercase leading-tight line-clamp-3">
+                                 <span className="text-[6px] text-slate-300 font-bold uppercase leading-tight line-clamp-3 px-0.5">
                                    {title}
                                  </span>
                                </div>
