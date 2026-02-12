@@ -763,7 +763,7 @@ export default function Home() {
                                   </p>
                                   <div className="flex flex-wrap gap-2">
                                     {book.tags.map((tag) => (
-                                      <span key={tag} className="text-[9px] bg-electric/20 text-electric px-2 py-0.5 rounded-full border border-electric/30 font-medium">
+                                      <span key={tag} className="text-[9px] bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full border border-orange-500/30 font-medium">
                                         {tag}
                                       </span>
                                     ))}
