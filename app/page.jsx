@@ -33,26 +33,26 @@ const collections = [
   {
     title: "Negocios",
     books: [
-      "Vendes o vendes - Grant Cardone",
-      "El método Lean Startup - Eric Ries",
-      "El líder que no tenía cargo - Robin Sharma",
-      "El ejecutivo al minuto y la organización del tiempo - Kenneth Blanchard, William Oncken, Jr., Hal Burrows",
-      "La semana laboral de 4 horas - Timothy Ferriss",
-      "Influencia: La psicología de la persuasión - Robert B. Cialdini",
-      "El manual del emprendedor - Steve Blank y Bob Dorf",
-      "Administración En una página - Riaz Khadem y Robert Lorber",
-      "El cuadrante del flujo de dinero - Robert T. Kiyosaki",
-      "Rompe la barrera del no - Chris Voss",
-      "La estrategia del océano azul - W. Chan Kim y Renée Mauborgne",
-      "Empresas que sobresalen (Good to Great) - Jim Collins",
-      "El mito del emprendedor - Michael E. Gerber",
-      "El millonario de la puerta de al lado - Thomas J. Stanley y William D. Danko",
-      "Padre rico, padre pobre - Robert T. Kiyosaki",
-      "El dilema de los innovadores - Clayton M. Christensen",
-      "De cero a uno - Peter Thiel",
-      "Organizaciones exponenciales - Salim Ismail, Michael S. Malone y Yuri Van Geest",
-      "El arte de la guerra - Sun Tzu",
-      "Rework - Jason Fried y David Heinemeier Hansson"
+      { title: "Vendes o vendes", author: "Grant Cardone", tags: ["Persuasión", "Convicción"], desc: "Sostiene que vender es una habilidad vital y que el éxito depende de tu capacidad para convencer a los demás." },
+      { title: "El método Lean Startup", author: "Eric Ries", tags: ["Validación", "Experimentación"], desc: "Propone un método científico para lanzar negocios basado en crear un producto mínimo viable y aprender de datos reales." },
+      { title: "El líder que no tenía cargo", author: "Robin Sharma", tags: ["Autorresponsabilidad", "Influencia"], desc: "Explica que el liderazgo es una actitud personal y que puedes influir positivamente sin importar tu jerarquía oficial." },
+      { title: "El ejecutivo al minuto y la organización del tiempo", author: "Kenneth Blanchard", tags: ["Delegación", "Enfoque"], desc: "Enseña a gestionar las tareas de forma que cada persona asuma su responsabilidad, evitando cargar con problemas ajenos." },
+      { title: "La semana laboral de 4 horas", author: "Timothy Ferriss", tags: ["Automatización", "Libertad"], desc: "Un manual para rediseñar tu vida eliminando lo innecesario, automatizando ingresos y trabajando desde cualquier lugar." },
+      { title: "Influencia: La psicología de la persuasión", author: "Robert B. Cialdini", tags: ["Gatillos mentales", "Reciprocidad"], desc: "Analiza los seis principios psicológicos que nos impulsan a decir que sí y cómo funcionan en la comunicación." },
+      { title: "El manual del emprendedor", author: "Steve Blank", tags: ["Validación", "Clientes"], desc: "Una guía técnica que prioriza salir a la calle para validar hipótesis con clientes reales antes de invertir tiempo y dinero." },
+      { title: "Administración En una página", author: "Riaz Khadem", tags: ["Control visual", "Simplicidad"], desc: "Presenta una metodología para dirigir organizaciones usando tres informes clave que resumen la información crítica del negocio." },
+      { title: "El cuadrante del flujo de dinero", author: "Robert T. Kiyosaki", tags: ["Libertad financiera", "Activos"], desc: "Clasifica las fuentes de ingresos y explica la mentalidad necesaria para pasar de ser empleado a ser un inversionista libre." },
+      { title: "Rompe la barrera del no", author: "Chris Voss", tags: ["Negociación", "Empatía"], desc: "Tácticas de negociación que usan la psicología y la escucha activa para obtener acuerdos favorables en situaciones difíciles." },
+      { title: "La estrategia del océano azul", author: "W. Chan Kim", tags: ["Diferenciación", "Innovación"], desc: "Propone crear mercados nuevos y sin competencia en lugar de pelear por los mismos clientes en sectores saturados." },
+      { title: "Empresas que sobresalen (Good to Great)", author: "Jim Collins", tags: ["Excelencia", "Liderazgo"], desc: "Estudia cómo empresas comunes se transformaron en extraordinarias mediante líderes humildes y un enfoque disciplinado." },
+      { title: "El mito del emprendedor", author: "Michael E. Gerber", tags: ["Sistematización", "Procesos"], desc: "Desmonta la idea de que saber un oficio basta para emprender, enfatizando sistemas que no dependan del dueño." },
+      { title: "El millonario de la puerta de al lado", author: "Thomas J. Stanley", tags: ["Frugalidad", "Ahorro"], desc: "Revela que la mayoría de los millonarios basan su riqueza en el ahorro constante y la vida modesta, no en el lujo." },
+      { title: "Padre rico, padre pobre", author: "Robert T. Kiyosaki", tags: ["Educación financiera", "Inversión"], desc: "Enseña a diferenciar activos de pasivos y subraya que la riqueza nace de hacer que el dinero trabaje para ti." },
+      { title: "El dilema de los innovadores", author: "Clayton M. Christensen", tags: ["Disrupción", "Adaptación"], desc: "Analiza por qué grandes compañías fracasan cuando ignoran innovaciones disruptivas que terminan cambiando las reglas del juego." },
+      { title: "De cero a uno", author: "Peter Thiel", tags: ["Monopolio", "Originalidad"], desc: "Argumenta que las mejores empresas crean cosas únicas y logran un monopolio creativo en lugar de copiar lo existente." },
+      { title: "Organizaciones exponenciales", author: "Salim Ismail", tags: ["Escalabilidad", "Tecnología"], desc: "Describe cómo las empresas modernas usan la tecnología para crecer masivamente con muy pocos activos físicos." },
+      { title: "El arte de la guerra", author: "Sun Tzu", tags: ["Estrategia", "Preparación"], desc: "Tratado milenario sobre cómo ganar conflictos mediante el conocimiento del rival, la planificación y la astucia." },
+      { title: "Rework", author: "Jason Fried", tags: ["Productividad", "Agilidad"], desc: "Propone formas de trabajar más sencillas y rápidas, eliminando reuniones, burocracia y planes innecesarios." }
     ],
     priceUsd: PACK_USD,
     image: "/images/pack-negocios.jpg",
@@ -61,26 +61,26 @@ const collections = [
   {
     title: "Estoicismo",
     books: [
-      "La disciplina marcará tu destino - Ryan Holiday",
-      "Escuela de Estoicismo Moderno - Isra García",
-      "De la Tranquilidad del Ánimo - Lucio Anneo Séneca",
-      "El pequeño libro de la filosofía estoica - Javier G. Recuenco y Guillermo de Haro",
-      "Pequeño Manual Estóico - Isra García",
-      "Meditaciones - Marco Aurelio",
-      "Cartas a Lucilio - Séneca",
-      "Los Estoicos y el Problema de la Libertad - Ricardo Salles",
-      "Diario para Estoicos - Ryan Holiday y Stephen Hanselman",
-      "Invicto - Marcos Vázquez",
-      "Ecos Estoicos - Pedro Vivar Núñez",
-      "De la Ira - Lucio Anneo Séneca",
-      "Cómo ser un estoico - Massimo Pigliucci",
-      "El estoico en práctica - Ward Farnsworth",
-      "El arte de vivir como un estoico - David Fideler",
-      "Los Estoicos: Epicteto, Séneca, Marco Aurelio - Selecciones de Nueva Acrópolis",
-      "El arte de la buena vida - William B. Irvine",
-      "El obstáculo es el camino - Ryan Holiday",
-      "La sabiduría de los estoicos - Frances y Henry Hazlitt",
-      "De la Brevedad de la Vida - Lucio Anneo Séneca"
+      { title: "La disciplina marcará tu destino", author: "Ryan Holiday", tags: ["Autocontrol", "Templanza"], desc: "Explora cómo la virtud estoica de la moderación y el dominio de los impulsos son la base de la libertad." },
+      { title: "Escuela de Estoicismo Moderno", author: "Isra García", tags: ["Práctica", "Resiliencia"], desc: "Un curso práctico para aplicar los principios estoicos a los problemas actuales, enfocándose en la acción real." },
+      { title: "De la Tranquilidad del Ánimo", author: "Lucio Anneo Séneca", tags: ["Serenidad", "Desapego"], desc: "Séneca enseña cómo evitar el desasosiego mental y encontrar la paz interior frente a las presiones externas." },
+      { title: "El pequeño libro de la filosofía estoica", author: "Javier G. Recuenco", tags: ["Dicotomía control", "Virtud"], desc: "Sintetiza los pilares del estoicismo, enfatizando preocuparse solo por lo que depende de uno mismo." },
+      { title: "Pequeño Manual Estóico", author: "Isra García", tags: ["Objetividad", "Consciencia"], desc: "Guía rápida para desarrollar un juicio racional sobre los eventos de la vida y vivir con mayor atención plena." },
+      { title: "Meditaciones", author: "Marco Aurelio", tags: ["Rectitud", "Introspección"], desc: "Reflexiones personales de Marco Aurelio sobre el deber, la brevedad de la vida y la integridad moral." },
+      { title: "Cartas a Lucilio", author: "Séneca", tags: ["Sabiduría", "Tiempo"], desc: "Consejos de Séneca sobre el uso correcto del tiempo, la amistad y la búsqueda diaria de la excelencia ética." },
+      { title: "Los Estoicos y el Problema de la Libertad", author: "Ricardo Salles", tags: ["Albedrío", "Determinismo"], desc: "Análisis filosófico sobre cómo los estoicos lograban sentirse libres en un universo que consideraban predestinado." },
+      { title: "Diario para Estoicos", author: "Ryan Holiday", tags: ["Hábito", "Reflexión"], desc: "Ofrece una cita y una reflexión diaria para integrar la sabiduría antigua en la rutina de cada día." },
+      { title: "Invicto", author: "Marcos Vázquez", tags: ["Fortaleza", "Mentalidad"], desc: "Combina la filosofía antigua con la psicología moderna para mejorar la resistencia mental ante el caos." },
+      { title: "Ecos Estoicos", author: "Pedro Vivar Núñez", tags: ["Claridad", "Integridad"], desc: "Profundiza en las lecciones de los maestros para encontrar un eje ético en un mundo lleno de distracciones." },
+      { title: "De la Ira", author: "Lucio Anneo Séneca", tags: ["Dominio", "Razón"], desc: "Ensayo que explica por qué la ira es destructiva y ofrece métodos para razonar antes de reaccionar." },
+      { title: "Cómo ser un estoico", author: "Massimo Pigliucci", tags: ["Guía ética", "Carácter"], desc: "Narra cómo la aplicación de principios racionales ayuda a navegar los dilemas modernos con elegancia y calma." },
+      { title: "El estoico en práctica", author: "Ward Farnsworth", tags: ["Acción", "Lógica"], desc: "Presenta la filosofía como un conjunto de ejercicios lógicos para actuar correctamente en cada situación." },
+      { title: "El arte de vivir como un estoico", author: "David Fideler", tags: ["Suficiencia", "Gratitud"], desc: "Se enfoca en aprender a querer lo que ya se tiene y a no depender de circunstancias externas para ser feliz." },
+      { title: "Los Estoicos", author: "Selecciones de Nueva Acrópolis", tags: ["Deber", "Naturaleza"], desc: "Selección de los textos más importantes de Epicteto, Séneca y Marco Aurelio sobre la ética y la ley natural." },
+      { title: "El arte de la buena vida", author: "William B. Irvine", tags: ["Tranquilidad", "Perspectiva"], desc: "Propone técnicas mentales para evitar la insatisfacción crónica y encontrar alegría en la sencillez del presente." },
+      { title: "El obstáculo es el camino", author: "Ryan Holiday", tags: ["Percepción", "Voluntad"], desc: "Demuestra que los problemas son en realidad las herramientas para avanzar y fortalecer el carácter." },
+      { title: "La sabiduría de los estoicos", author: "Frances y Henry Hazlitt", tags: ["Autodominio", "Destino"], desc: "Recopilación de enseñanzas sobre la importancia de gobernar la propia mente para enfrentar cualquier circunstancia." },
+      { title: "De la Brevedad de la Vida", author: "Lucio Anneo Séneca", tags: ["Urgencia", "Prioridad"], desc: "Reflexión sobre cómo el tiempo es lo más valioso y cómo desperdiciarlo es el mayor error humano." }
     ],
     priceUsd: PACK_USD,
     image: "/images/pack-estoicismo.jpg",
@@ -89,26 +89,26 @@ const collections = [
   {
     title: "Desarrollo Personal",
     books: [
-      "Las 48 Leyes del Poder - Robert Greene",
-      "Tus zonas erróneas - Wayne Dyer",
-      "La magia del orden - Marie Kondo",
-      "El Club de las 5 de la mañana - Robin Sharma",
-      "¿Quién se ha llevado mi queso? - Spencer Johnson",
-      "Los 7 hábitos de la gente altamente efectiva - Stephen Covey",
-      "Despierta tu héroe interior - Victor Hugo Manzanilla",
-      "Cree en ti - Rut Nieves",
-      "El sutil arte de que (casi todo) te importe una mierda - Mark Manson",
-      "Ámate a ti mismo como si tu vida dependiera de ello - Kamal Ravikant",
-      "Piense y hágase rico - Napoleon Hill",
-      "El hombre en busca de sentido - Viktor Frankl",
-      "Si lo crees, lo creas - Brian Tracy",
-      "Cómo ganar amigos e influir sobre las personas - Dale Carnegie",
-      "El monje que vendió su Ferrari - Robin Sharma",
-      "La Vaca - Camilo Cruz",
-      "Más agudo, más rápido y mejor - Charles Duhigg",
-      "El poder del ahora - Eckhart Tolle",
-      "Hábitos Atómicos - James Clear",
-      "¡Hazlo con miedo! - Ruth Soukup"
+      { title: "Las 48 Leyes del Poder", author: "Robert Greene", tags: ["Poder", "Prudencia"], desc: "Estudio sobre las reglas que rigen las jerarquías y la influencia, enfocado en entender cómo funciona el mando." },
+      { title: "Tus zonas erróneas", author: "Wayne Dyer", tags: ["Independencia emocional", "Presente"], desc: "Identifica pensamientos autodestructivos y enseña a eliminarlos para vivir sin culpas ni miedos innecesarios." },
+      { title: "La magia del orden", author: "Marie Kondo", tags: ["Espacio", "Minimalismo"], desc: "Enseña que ordenar el entorno físico ayuda a poner en orden la mente y a rodearse solo de lo que aporta felicidad." },
+      { title: "El Club de las 5 de la mañana", author: "Robin Sharma", tags: ["Rutina", "Disciplina"], desc: "Propone levantarse temprano para realizar una rutina de crecimiento personal que potencie el éxito y la salud." },
+      { title: "¿Quién se ha llevado mi queso?", author: "Spencer Johnson", tags: ["Adaptabilidad", "Cambio"], desc: "Parábola sobre la resistencia al cambio y la importancia de adaptarse rápidamente a las nuevas situaciones." },
+      { title: "Los 7 hábitos de la gente altamente efectiva", author: "Stephen Covey", tags: ["Proactividad", "Sinergia"], desc: "Presenta un sistema de principios éticos para lograr efectividad personal e interpersonal duradera." },
+      { title: "Despierta tu héroe interior", author: "Victor Hugo Manzanilla", tags: ["Actitud", "Propósito"], desc: "Motiva a vivir con actitud positiva y a desarrollar virtudes humanas para alcanzar una vida con significado." },
+      { title: "Cree en ti", author: "Rut Nieves", tags: ["Autoconfianza", "Reprogramación"], desc: "Explora cómo nuestras creencias limitantes crean nuestra realidad y cómo cambiarlas para alcanzar el éxito." },
+      { title: "El sutil arte de que (casi todo) te importe una mierda", author: "Mark Manson", tags: ["Priorización", "Aceptación"], desc: "Aboga por elegir cuidadosamente nuestras batallas y aceptar el dolor como parte natural del crecimiento." },
+      { title: "Ámate a ti mismo como si tu vida dependiera de ello", author: "Kamal Ravikant", tags: ["Autoestima", "Amor"], desc: "Relato sobre la autoaceptación y cómo cambiar el diálogo interno puede transformar radicalmente tu vida." },
+      { title: "Piense y hágase rico", author: "Napoleon Hill", tags: ["Deseo", "Planificación"], desc: "Sintetiza los principios mentales y de planificación necesarios para convertir el deseo en riqueza material." },
+      { title: "El hombre en busca de sentido", author: "Viktor Frankl", tags: ["Propósito", "Resiliencia"], desc: "Narra la supervivencia en campos de concentración concluyendo que el propósito es la mayor fuerza humana." },
+      { title: "Si lo crees, lo creas", author: "Brian Tracy", tags: ["Autoimagen", "Acción"], desc: "Ofrece una guía para eliminar pensamientos negativos y potenciar la autoconfianza para lograr metas ambiciosas." },
+      { title: "Cómo ganar amigos e influir sobre las personas", author: "Dale Carnegie", tags: ["Carisma", "Relaciones"], desc: "Enseña habilidades de comunicación fundamentales para conectar con otros y liderar de forma persuasiva." },
+      { title: "El monje que vendió su Ferrari", author: "Robin Sharma", tags: ["Equilibrio", "Espiritualidad"], desc: "Fábula que narra la transformación de un abogado exitoso hacia una vida de paz, salud y propósito claro." },
+      { title: "La Vaca", author: "Camilo Cruz", tags: ["Excusas", "Superación"], desc: "Usa la metáfora de una vaca para representar las excusas que nos mantienen estancados en la mediocridad." },
+      { title: "Más agudo, más rápido y mejor", author: "Charles Duhigg", tags: ["Eficiencia", "Decisión"], desc: "Explora la ciencia de la productividad y cómo el enfoque y la toma de decisiones determinan los resultados." },
+      { title: "El poder del ahora", author: "Eckhart Tolle", tags: ["Presencia", "Consciencia"], desc: "Enseña a vivir en el presente para liberarse del sufrimiento causado por el ego y la rumiación mental." },
+      { title: "Hábitos Atómicos", author: "James Clear", tags: ["Sistemas", "Identidad"], desc: "Explica cómo pequeños cambios diarios se acumulan para generar transformaciones extraordinarias a largo plazo." },
+      { title: "¡Hazlo con miedo!", author: "Ruth Soukup", tags: ["Valentía", "Acción"], desc: "Un llamado a la acción que insta a no esperar a que desaparezca el miedo para perseguir metas importantes." }
     ],
     priceUsd: PACK_USD,
     image: "/images/pack-desarrollo.jpg"
@@ -723,7 +723,6 @@ export default function Home() {
                     .find((c) => c.title === viewingList)
                     ?.books.map((book, i) => {
                       const isExpanded = expandedBook === i;
-                      const [title, author] = book.split(" - ");
                       
                       return (
                         <div
@@ -739,10 +738,10 @@ export default function Home() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-white leading-tight truncate">
-                                {title}
+                                {book.title}
                               </p>
                               <p className="text-[10px] text-slate-400 mt-0.5 truncate">
-                                {author || "Autor Desconocido"}
+                                {book.author}
                               </p>
                             </div>
                             <div className="text-slate-500 px-2">
@@ -758,19 +757,16 @@ export default function Home() {
                                 exit={{ height: 0, opacity: 0 }}
                                 className="px-4 pb-4 border-t border-white/5 bg-white/[0.02]"
                               >
-                                <div className="pt-3 space-y-2">
+                                <div className="pt-3 space-y-3">
                                   <p className="text-xs text-slate-300 leading-relaxed italic">
-                                    {title === "Las 48 Leyes del Poder" && "Un análisis profundo de las tácticas de poder basadas en la historia y la filosofía."}
-                                    {title === "Hábitos Atómicos" && "Una guía práctica para crear buenos hábitos y romper los malos mediante pequeños cambios."}
-                                    {title === "El poder del ahora" && "Un viaje espiritual para aprender a vivir en el presente y liberarse del sufrimiento mental."}
-                                    {title === "Meditaciones" && "Las reflexiones personales del emperador Marco Aurelio sobre la vida, la virtud y el estoicismo."}
-                                    {title === "Padre rico, padre pobre" && "Lecciones fundamentales sobre educación financiera y cómo hacer que el dinero trabaje para ti."}
-                                    {title === "Vendes o vendes" && "Estrategias de ventas agresivas y efectivas para triunfar en cualquier negocio."}
-                                    {!["Las 48 Leyes del Poder", "Hábitos Atómicos", "El poder del ahora", "Meditaciones", "Padre rico, padre pobre", "Vendes o vendes"].includes(title) && `Este título es una pieza clave de la colección "${viewingList}", seleccionado por su alto valor educativo y práctico.`}
+                                    {book.desc}
                                   </p>
-                                  <div className="flex gap-2">
-                                    <span className="text-[9px] bg-electric/20 text-electric px-2 py-0.5 rounded-full border border-electric/30">PDF Premium</span>
-                                    <span className="text-[9px] bg-gold/20 text-gold px-2 py-0.5 rounded-full border border-gold/30">Acceso Drive</span>
+                                  <div className="flex flex-wrap gap-2">
+                                    {book.tags.map((tag) => (
+                                      <span key={tag} className="text-[9px] bg-electric/20 text-electric px-2 py-0.5 rounded-full border border-electric/30 font-medium">
+                                        {tag}
+                                      </span>
+                                    ))}
                                   </div>
                                 </div>
                               </motion.div>
